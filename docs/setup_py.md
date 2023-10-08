@@ -1,4 +1,4 @@
- python3 setup.py sdist --format=zip
+python3 setup.py sdist --format=zip
 
 
 
