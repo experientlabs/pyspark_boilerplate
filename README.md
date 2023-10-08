@@ -1,18 +1,20 @@
 # pyspark_boilerplate
 
-This is a sample pyspark boilerplate application developed following object oriented programming and various Design Principles like
-ABC, Factory Design and Singleton Design Patterns etc. The goal behind developing this boilerplate is to provide a real
-practical exposure to Pyspark and python coding as it will be in a production environment and make it as production 
-ready as possible using my limited knowledge and experience.
-This repo contains more than one way of doing same thing to demonstrate various ways of performing a similar task. There is no 
-one size fits all so I have tried to demonstrate different approach. For example in order to fetch configs and Constants, 
+This is a sample pyspark boilerplate application developed using object oriented programming and various Design Principles like
+Abstract Base Class (ABC), Factory Design and Singleton Design Patterns etc. 
+
+The goal behind developing this boilerplate is to provide a real exposure to Pyspark and python coding as a production 
+environment. And make this boilerplate as production ready as possible using my limited knowledge and experience.
+
+This repo contains more than one way of doing same thing to demonstrate various ways of performing a similar task. 
+For example in order to fetch configs and Constants, 
 I am using following approach here:
-1. config file with extension .cfg/ini read by parsed by configparser in config_utils.py 
+1. config file with extension .cfg/ini read and parsed by configparser in config_utils.py 
 2. Constants.py containing dictionary --  This has been replaced by Enum 
 3. Constants.py containing Enum class
 
 
-In terms of Coverage of spark topics, the repo tries to cover all of the High level topics mentioned here
+In terms of covering of spark topics, the repo tries to cover all of the High level topics mentioned here
  - Spark SQL
  - Spark Streaming
  - MLlib
