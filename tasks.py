@@ -53,5 +53,4 @@ def inc_major(c):
 
 @task
 def project_root():
-    project_root_dir = os.path.dirname(os.path.abspath(__file__))
-    return project_root_dir
+    return os.path.dirname(os.path.abspath(__file__))
