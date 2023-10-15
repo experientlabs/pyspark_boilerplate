@@ -6,6 +6,7 @@ pre_release_placeholder = 'SNAPSHOT'
 version_filepath = os.path.join('.', 'VERSION')
 version_pattern = re.compile(fr'^\d+.\d+.\d+(-{pre_release_placeholder})?$')
 
+
 @task
 def get(c, with_pre_release_placeholder=False):
     with open(version_filepath, 'r') as version_file:
@@ -14,9 +15,13 @@ def get(c, with_pre_release_placeholder=False):
         version = version_lines[0]
         assert version_pattern.match(version), 'Version string is malformed'
         if with_pre_release_placeholder:
+            print(version)
             return version
         else:
+            version = version.replace(f'-{pre_release_placeholder}', '')
+            print(version)
             return version.replace(f'-{pre_release_placeholder}', '')
+
 
 @task
 def write_version_file(c, major, minor, patch):
@@ -24,11 +29,13 @@ def write_version_file(c, major, minor, patch):
     with open(version_filepath, 'w') as version_file:
         version_file.write(version)
 
+
 @task
 def inc_patch(c):
     version = get(c)
     major, minor, patch = version.split('.')
     write_version_file(c, major, minor, int(patch) + 1)
+
 
 @task
 def inc_minor(c):
@@ -36,8 +43,15 @@ def inc_minor(c):
     major, minor, patch = version.split('.')
     write_version_file(c, major, int(minor) + 1, patch)
 
+
 @task
 def inc_major(c):
     version = get(c)
     major, minor, patch = version.split('.')
     write_version_file(c, int(major) + 1, minor, patch)
+
+
+@task
+def project_root():
+    project_root_dir = os.path.dirname(os.path.abspath(__file__))
+    return project_root_dir
