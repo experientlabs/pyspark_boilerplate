@@ -1,6 +1,7 @@
 import os
 import re
 from invoke import task
+import setup
 
 pre_release_placeholder = 'SNAPSHOT'
 version_filepath = os.path.join('.', 'VERSION')
@@ -14,11 +15,9 @@ def get_version(with_pre_release_placeholder=False):
         version = version_lines[0]
         assert version_pattern.match(version), 'Version string is malformed'
         if with_pre_release_placeholder:
-            print(version)
             return version
         else:
             version = version.replace(f'-{pre_release_placeholder}', '')
-            print(version)
             return version.replace(f'-{pre_release_placeholder}', '')
 
 

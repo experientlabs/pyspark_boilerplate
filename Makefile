@@ -54,7 +54,7 @@ isort: ## Sort imports in the python module
 #------------ PACKAGING  -------------------------------------------------------
 
 package:
-	./package.sh
+	./scripts/package.sh
 
 #------------ RUN/DEBUG  -------------------------------------------------------
 run-package:
