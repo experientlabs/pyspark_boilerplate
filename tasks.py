@@ -1,7 +1,6 @@
 import os
 import re
 from invoke import task
-import setup
 
 pre_release_placeholder = 'SNAPSHOT'
 version_filepath = os.path.join('.', 'VERSION')
