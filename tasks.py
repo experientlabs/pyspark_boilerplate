@@ -61,3 +61,10 @@ def project_root(c):
     project_root_dir = os.path.dirname(os.path.abspath(__file__))
     print(project_root_dir)
     return project_root_dir
+
+
+@task
+def spark_submit_command(c, job_name):
+    # spark-submit --py-files spark_etl.zip src/app/app.py --job-name air_asia_data_job
+    # return f"spark-submit --py-files spark_etl.zip src/app/app.py --job-name {job_name}"
+    os.system(f"spark-submit --py-files spark_etl.zip src/app/app.py --job-name {job_name}")

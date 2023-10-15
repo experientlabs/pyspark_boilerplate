@@ -49,13 +49,8 @@ class App:
 
 def setup_parser():
     parser = argparse.ArgumentParser(description="args for pyspark app")
-    parser.add_argument(
-        "--job-name",
-        nargs="?",
-        type=str,
-        default="air_asia_data_job",
-        # required=True,
-        help="name of the job to be run",
+    parser.add_argument("--job-name", nargs="?", type=str, default="air_asia_data_job",
+                        help="name of the job to be run",  #required=True,
     )
     return parser
 
