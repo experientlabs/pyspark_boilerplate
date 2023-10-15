@@ -19,7 +19,6 @@ version_pattern = re.compile(fr'^\d+.\d+.\d+(-{pre_release_placeholder})?$')
 
 setup(
     name="spark_etl",
-    # version="0.0.1",
     version=tasks.get_version(),
     author="Sanjeet Shukla",
     author_email="sanjeet.shukla089@gmail.com",
@@ -27,7 +26,7 @@ setup(
     description="A pyspark boilerplate with Object Oriented Design",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/SanjeetShukla01/pyspark_framework",
+    url="https://github.com/experientlabs/pyspark_boilerplate",
     license='CC BY-NC 4.0',
     python_requires='>=3.7',
     include_package_data=False,
@@ -39,9 +38,9 @@ setup(
     package_data={".": ["*.py"]},
     test_suite='tests',
     project_urls={
-        "Bug Reports": "https://github.com/SanjeetShukla01/pyspark_framework/issues",
+        "Bug Reports": "https://github.com/experientlabs/pyspark_boilerplate/issues",
         "Funding": "https://donate.pypi.org",
         "Say Thanks!": "https://saythanks.io/my_project",
-        "Source": "https://github.com/SanjeetShukla01/pyspark_framework/"
+        "Source": "https://github.com/experientlabs/pyspark_boilerplate"
     }
 )
