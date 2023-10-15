@@ -3,9 +3,6 @@ python3 setup.py sdist --format=zip
 
 
 How to manage version of a Python Project?
-https://towardsdatascience.com/setup-version-increment-and-automated-release-process-591d87ea1221
-
-
 # Versioning
 https://github.com/mbalatsko/release-version-incremen
 https://towardsdatascience.com/setup-version-increment-and-automated-release-process-591d87ea1221
@@ -149,4 +146,6 @@ https://stackoverflow.com/questions/46429962/how-to-redirect-entire-output-of-sp
 
 
 # ToDo:
-Add CICD so that CI test can be executed by commenting specific string in the gihub comment box. 
+Add CICD so that CI test can be executed by commenting specific string in the gihub comment box.
+
+Packages used for 
