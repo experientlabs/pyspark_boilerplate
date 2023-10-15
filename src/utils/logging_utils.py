@@ -11,7 +11,8 @@ import sys
 import threading
 from datetime import datetime
 
-from root_path import project_root_dir
+# from root_path import project_root_dir
+from tasks import project_root
 from src.config.etl_config import air_asia_data_job
 from src.utils.common import DotDict
 
@@ -49,7 +50,7 @@ class Logger(SingletonDoubleChecked):
             datefmt="%m/%d/%Y %I:%M:%S %p",
         )
         log_dir = DotDict(air_asia_data_job).paths["log_dir_name"]
-        log_path = project_root_dir + log_dir
+        log_path = project_root + log_dir
 
         self.LOG_DIRECTORY = os.path.join(
             os.path.dirname(__file__), log_path
