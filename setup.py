@@ -25,7 +25,7 @@ setup(
             "app=app:app",
         ],
     },
-    package_data={".": ["*.py"]},
+    package_data={"": ["*.cfg", "*.ini", "*.py", "tasks.py", "VERSION"]},
     test_suite='tests',
     project_urls={
         "Bug Reports": "https://github.com/experientlabs/pyspark_boilerplate/issues",
