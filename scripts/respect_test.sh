@@ -1,4 +1,5 @@
 #!/bin/bash
+source respect
 
 :"A sample shell script file to test various functions in respect.sh"
 

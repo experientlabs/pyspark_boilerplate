@@ -12,7 +12,7 @@ import threading
 from datetime import datetime
 
 # from root_path import project_root_dir
-from project_root_dir import project_root_dir
+from setup import project_root_dir
 from src.config.etl_config import air_asia_data_job
 from src.utils.common import DotDict
 

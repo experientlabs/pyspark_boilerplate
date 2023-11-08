@@ -23,7 +23,8 @@ In terms of covering of spark topics, the repo tries to cover all of the High le
 In order to use this boilerplate follow below instructions. 
 Setting up current project to the PYTHONPATH
 ```commandline
-export PYTHONPATH=$PYTHONPATH:/home/archana/Desktop/git-repo/pyspark_framework
+rootfolder="$(pwd)"
+export PYTHONPATH=$PYTHONPATH:$rootfolder
 ```
 
 Creating requirements.txt file
