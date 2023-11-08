@@ -1,9 +1,10 @@
 import os
 import re
 from invoke import task
+from project_root_dir import project_root_dir
 
 pre_release_placeholder = 'SNAPSHOT'
-version_filepath = os.path.join('.', 'VERSION')
+version_filepath = os.path.join(project_root_dir, 'VERSION')
 version_pattern = re.compile(fr'^\d+.\d+.\d+(-{pre_release_placeholder})?$')
 
 
@@ -66,3 +67,4 @@ def spark_submit_command(c, job_name):
     # spark-submit --py-files spark_etl.zip src/app/app.py --job-name air_asia_data_job
     # return f"spark-submit --py-files spark_etl.zip src/app/app.py --job-name {job_name}"
     os.system(f"spark-submit --py-files spark_etl.zip src/app/app.py --job-name {job_name}")
+

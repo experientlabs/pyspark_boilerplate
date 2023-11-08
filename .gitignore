@@ -8,3 +8,5 @@ data/source_data/aa_data
 target/
 logs/log_*
 lgos/
+dist
+spark_etl.egg-info
