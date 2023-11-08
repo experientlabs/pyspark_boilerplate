@@ -7,8 +7,7 @@ version_filepath = os.path.join('.', 'VERSION')
 version_pattern = re.compile(fr'^\d+.\d+.\d+(-{pre_release_placeholder})?$')
 
 
-@task
-def get(c, with_pre_release_placeholder=False):
+def get_version(with_pre_release_placeholder=False):
     with open(version_filepath, 'r') as version_file:
         version_lines = version_file.readlines()
         assert len(version_lines) == 1, 'Version file is malformed'
@@ -21,6 +20,12 @@ def get(c, with_pre_release_placeholder=False):
             version = version.replace(f'-{pre_release_placeholder}', '')
             print(version)
             return version.replace(f'-{pre_release_placeholder}', '')
+
+
+@task
+def get(c, with_pre_release_placeholder=False):
+    get_version(with_pre_release_placeholder=False)
+
 
 
 @task
@@ -52,5 +57,14 @@ def inc_major(c):
 
 
 @task
-def project_root():
-    return os.path.dirname(os.path.abspath(__file__))
+def project_root(c):
+    project_root_dir = os.path.dirname(os.path.abspath(__file__))
+    print(project_root_dir)
+    return project_root_dir
+
+
+@task
+def spark_submit_command(c, job_name):
+    # spark-submit --py-files spark_etl.zip src/app/app.py --job-name air_asia_data_job
+    # return f"spark-submit --py-files spark_etl.zip src/app/app.py --job-name {job_name}"
+    os.system(f"spark-submit --py-files spark_etl.zip src/app/app.py --job-name {job_name}")
