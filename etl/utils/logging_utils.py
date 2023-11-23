@@ -12,8 +12,8 @@ import threading
 from datetime import datetime
 
 from project_root_dir import project_root_dir
-from src.config.etl_config import air_asia_data_job
-from src.utils.common import DotDict
+from etl.config.etl_config import air_asia_data_job
+from etl.utils.common import DotDict
 
 
 class SingletonDoubleChecked(object):

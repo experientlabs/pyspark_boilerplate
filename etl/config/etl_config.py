@@ -1,4 +1,4 @@
-from src.utils.common import DotDict, NestedDict
+from etl.utils.common import DotDict, NestedDict
 
 air_asia_data_job = {
     "paths": {

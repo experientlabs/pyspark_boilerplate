@@ -6,10 +6,10 @@
 # -----------------------------------------------------------------------
 import sys
 
-from src.app.job import Job
-from src.utils import spark_utils
-from src.config import config_utils
-from src.utils.logging_utils import Logger
+from etl.job import Job
+from etl.utils import spark_utils
+from etl.config import config_utils
+from etl.utils.logging_utils import Logger
 from pyspark.sql.functions import round, when, col
 
 

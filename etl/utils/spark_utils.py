@@ -4,7 +4,7 @@ from pyspark.sql import DataFrame
 from pyspark.sql import SparkSession
 from pyspark.sql.types import StructType
 
-from src.utils.logging_utils import Logger
+from etl.utils.logging_utils import Logger
 
 
 class SparkUtils:

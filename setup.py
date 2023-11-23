@@ -27,13 +27,13 @@ setup(
     url="https://github.com/experientlabs/pyspark_boilerplate",
     license='CC BY-NC 4.0',
     python_requires='>=3.7',
-    include_package_data=False,
     entry_points={
         "console_scripts": [
-            "app=app:app",
+            "app=et.etl_job.app:app",
         ],
     },
     package_data={"": ["*.cfg", "*.ini", "*.py", "tasks.py", "VERSION", "project_root_dir.py"]},
+    include_package_data=True,
     test_suite='tests',
     project_urls={
         "Bug Reports": "https://github.com/experientlabs/pyspark_boilerplate/issues",

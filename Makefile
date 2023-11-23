@@ -1,4 +1,4 @@
-PY_MODULES=src test
+PY_MODULES=etl test
 CONFIGFILE=setup.cfg
 DOCKER_REGISTRY=sshukla
 IMAGE_NAME=myspark

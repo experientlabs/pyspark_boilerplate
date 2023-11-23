@@ -6,11 +6,11 @@
 # -----------------------------------------------------------------------
 import os
 import unittest
-from src.config import config_utils
+from etl.config import config_utils
 
 
 class TestConfigUtils(unittest.TestCase):
-    config_path = "../src/config/pipeline.cfg"
+    config_path = "../etl/config/pipeline.cfg"
     configutil = config_utils.ConfigUtil(config_path)
     configutil.get_config("IO_CONFIGS", "INPUT_DATA_PATH")
 

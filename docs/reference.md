@@ -12,6 +12,11 @@ https://github.com/koalaman/shellcheck/wiki/SC2164
 https://github.com/diogocavilha/respect-shell
 
 
+# Python clean and build command
+python3 setup.py clean
+python3 setup.py sdist --format=zip
+
+
 # Make File
 
 ```pytest -vvv -rf -q --cov --cov-report term $(PY_MODULES) $(PYTESTFLAGS)```
@@ -51,7 +56,7 @@ Here's how it works:
 - The command to run is isort -l80 -m3 -c --tc $(PY_MODULES).
 - The isort command checks the import order of the specified modules.
 - The -l80 flag sets the line length to 80 characters.
-- The -m3 flag sets the multi-line import style to "vertial hanging indent".
+- The -m3 flag sets the multi-line import style to "vertical hanging indent".
 - The -c flag makes isort only check the import order and not apply any changes.
 - The --tc flag prints a unified diff of the changes that would be made by isort.
 - The $(PY_MODULES) variable should contain a space-separated list of Python module file paths to be checked by isort.

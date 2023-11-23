@@ -27,10 +27,10 @@ jobs:
           pip install -e .
 
       - name: running flake 8 to adhere python coding standard
-        run: flake8 src #--ignore=E501, 265,
+        run: flake8 etl #--ignore=E501, 265,
 
       - name: running Bandit to check vulnerability
-        run: bandit -r src
+        run: bandit -r etl
 
       - name: running unittest with coverage report
         run: python -m coverage run -m unittest discover -s test -p "*_test.py" && python -m coverage report && 

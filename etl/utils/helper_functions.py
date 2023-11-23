@@ -7,7 +7,7 @@
 import datetime
 import os
 
-from src.utils.logging_utils import Logger
+from etl.utils.logging_utils import Logger
 
 
 class Helper:

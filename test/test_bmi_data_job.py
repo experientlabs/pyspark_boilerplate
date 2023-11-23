@@ -6,8 +6,8 @@
 # -----------------------------------------------------------------------
 import unittest
 
-from src.utils import spark_utils
-from src.config import config_utils
+from etl.utils import spark_utils
+from etl.config import config_utils
 
 
 class TestBMIJob(unittest.TestCase):
@@ -19,7 +19,7 @@ class TestBMIJob(unittest.TestCase):
     utils = spark_utils.SparkUtils()
     spark = utils.get_spark_session("bmi_data_job")
 
-    config_path = "../src/config/pipeline.cfg"
+    config_path = "../etl/config/pipeline.cfg"
     configutil = config_utils.ConfigUtil(config_path)
     configutil.get_config("IO_CONFIGS", "INPUT_DATA_PATH")
 
