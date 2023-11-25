@@ -1,3 +1,7 @@
+
+
+<img src="../resources/images/to_do.png" alt="to_do" style="height:419px; width:1072px; margin: -40px 50px -60px 0px; overflow: hidden;"/>
+
 # High level TODO
 - Add Architecture Diagram.
 - Refactoring to make it compatible

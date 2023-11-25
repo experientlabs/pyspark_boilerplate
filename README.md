@@ -51,12 +51,12 @@ The above make command runs spark-submit command so the console log will contain
 
 
 # Packaging and distribution
+```commandline
+make package
+```
 
 
-
-In order to avoid relative path issue, I have tried `package resources api` from setuptools. 
-later on this was changed with a python file in root directory named `project_root_dir.py`
-The goal is to switch back to package resources api after the project is stable.
+# Versioning 
 
 
 
@@ -67,6 +67,8 @@ spark-submit \
 	src/app/app.py \
 	--job-name air_asia_data_job
 ```
+
+
 
 While running spark-submit in spark jupyter docker container. I was getting error:
 Jupyter command `file/path` not found
@@ -81,34 +83,10 @@ export PYTHONPATH=PYTHONPATH:spark_etl/
 
 
 
-https://stackoverflow.com/questions/67267683/do-we-need-if-name-main-unittest-main-in-every-unit-tests-file
-
-
-https://github.com/orgs/community/discussions/25389
-
-
-What is decorator design pattern? Provide at least one example of Decorator Design Pattern in this code?
 
 
 
 
-
-
-## pytest -vvv -rf -q --cov --cov-report term $(PY_MODULES) $(PYTESTFLAGS)
-The pytest command runs the pytest testing framework on the specified modules.
-The -vvv flag sets the verbosity level to "very very verbose", which means that pytest will print a lot of information about each test.
-The -rf flag shows "only failed tests and any important information", suppressing the output for passing tests.
-The -q flag suppresses extra information when running tests.
-The --cov flag enables code coverage measurement with pytest-cov.
-The --cov-report term flag specifies that coverage statistics should be printed to the terminal in a simple format.
-The $(PY_MODULES) variable should contain a space-separated list of Python module file paths to be tested by pytest.
-The $(PYTESTFLAGS) variable can contain additional command-line flags and options to be passed to pytest.
-
-So when you run make test-unit, it will execute the pytest command with the specified options, running the unit tests and measuring code coverage for the specified modules.
-
-https://stackoverflow.com/questions/25436312/gitignore-not-working
-
-https://stackoverflow.com/questions/38776517/how-to-discard-local-changes-and-pull-latest-from-github-repository
 
 
 Using function as a decorator:

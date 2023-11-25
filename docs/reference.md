@@ -9,6 +9,9 @@
    - https://stackoverflow.com/questions/54797832/why-does-spark-submit-fail-with-error-executing-jupyter-command
    - https://janetvn.medium.com/how-to-add-multiple-python-custom-modules-to-spark-job-6a8b943cdbbc
    - https://stackoverflow.com/questions/46429962/how-to-redirect-entire-output-of-spark-submit-to-a-file
+   - https://stackoverflow.com/questions/67267683/do-we-need-if-name-main-unittest-main-in-every-unit-tests-file
+   - https://stackoverflow.com/questions/25436312/gitignore-not-working
+   - https://stackoverflow.com/questions/38776517/how-to-discard-local-changes-and-pull-latest-from-github-repository
    - How to enforce schema on Pyspark Job?
      - https://github.com/MrPowers/quinn/blob/main/quinn/dataframe_validator.py
      - https://stackoverflow.com/questions/63040466/enforcing-schema-for-pyspark-job
@@ -110,7 +113,9 @@ This assumes that you have installed the coverage package and your unit tests ar
 You can add this target to your existing Makefile by simply appending these lines to the end of the file. Then you can run make coverage to run your unit tests with coverage measurement and produce coverage reports in both the terminal and a HTML file. The HTML report will be saved in a htmlcov/ directory.
 
 
-#### Backup Notes from readme file:
+### Notes from readme file:
+
+#### Note-1
 I have tried to add more than one way of doing same thing to demonstrate different ways of performing a similar task. 
 For example in order to fetch configs and Constants, 
 I am using following approach here:
@@ -118,3 +123,7 @@ I am using following approach here:
 2. Constants.py containing dictionary --  This has been replaced by Enum 
 3. Constants.py containing Enum class
 
+#### Note-2
+In order to avoid relative path issue, I have tried `package resources api` from setuptools. 
+later on this was changed with a python file in root directory named `project_root_dir.py`
+The goal is to switch back to package resources api after the project is stable.

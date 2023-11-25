@@ -15,17 +15,17 @@ echo "+++++++++++++++++++++++"
 echo "$version"
 echo "+++++++++++++++++++++++"
 python3 setup.py sdist --format=zip
-#echo "+++++++++++++++++++++++"
-#echo "unzipping the sdist/spark-spark_etl-version.zip"
-#echo "+++++++++++++++++++++++"
-#unzip -q "dist/spark_etl-$version.zip"
-#cd "spark_etl-$version" || exit
-## Small hack so that main package (etl) can be added to python path
-#touch __init__.py
-#mkdir ../../target
-#zip -q -r "../../target/spark_etl-$version.zip" *
-#cd ../../
-#pwd
-#rm -r to_upload
+echo "+++++++++++++++++++++++"
+echo "unzipping the sdist/spark-spark_etl-version.zip"
+echo "+++++++++++++++++++++++"
+unzip -q "dist/spark_etl-$version.zip"
+cd "spark_etl-$version" || exit
+# Small hack so that main package (etl) can be added to python path
+touch __init__.py
+mkdir ../../target
+zip -q -r "../../target/spark_etl-$version.zip" *
+cd ../../
+pwd
+rm -r to_upload
 
 

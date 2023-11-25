@@ -2,8 +2,8 @@ import os
 import re
 from setuptools import find_packages, setup
 import pathlib
-from etl import tasks
-from etl.project_root_dir import project_root_dir
+import tasks
+from project_root_dir import project_root_dir
 
 here = pathlib.Path(__file__).parent.resolve()
 

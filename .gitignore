@@ -10,3 +10,4 @@ logs/log_*
 lgos/
 dist
 spark_etl.egg-info
+to_upload/
