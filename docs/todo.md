@@ -33,3 +33,10 @@ What else to do
 6. Python Shiny Graph
 7. Airflow DAG
 8. Packaging and Distribution
+
+Using function as a decorator:
+- Using @property decorator
+- Implement @abstractmethod
+- Implement @staticmethod
+- Implement ABC
+- Use @dataclass(frozen = true)

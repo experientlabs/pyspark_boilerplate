@@ -17,7 +17,7 @@ In terms of coverage of spark topics, the goal is to cover all of the High level
 
 <img src="resources/images/apache_spark_components.png" alt="drawing" style="width:500px;"/>
 
-[TOC]
+[TOC: Table of Contents]() 
 
 ### Setup: Manually running it locally
 In order to use this boilerplate follow the instructions mentioned below: 
@@ -55,6 +55,10 @@ The above make command runs spark-submit command so the console log will contain
 make package
 ```
 
+```
+spark-submit --py-files target/spark_etl-0.0.1.zip etl/etl_job.py --job-name air_asia_data_job
+```
+
 
 # Versioning 
 
@@ -89,12 +93,6 @@ export PYTHONPATH=PYTHONPATH:spark_etl/
 
 
 
-Using function as a decorator:
-Using @property decorator
-Implement @abstractmethod
-implement @staticmethod
 
-Implement ABC
-Use @dataclass(frozen = true)
 
 
