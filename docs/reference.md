@@ -17,6 +17,13 @@ python3 setup.py clean
 python3 setup.py sdist --format=zip
 
 
+Creating requirements.txt file
+
+```commandline
+pip3 freeze > requirements.txt  #Python3
+```
+
+
 # Make File
 
 ```pytest -vvv -rf -q --cov --cov-report term $(PY_MODULES) $(PYTESTFLAGS)```
@@ -88,6 +95,8 @@ You can add this target to your existing Makefile by simply appending these line
 https://nono.ma/make-target-is-up-to-date
 
 
+makefile vs shell script
+https://unix.stackexchange.com/questions/496793/script-or-makefile-to-automate-new-user-creation/497601#497601
 
 
 
@@ -100,6 +109,12 @@ https://towardsdatascience.com/python-decorators-for-data-science-6913f717669a
 
 Use Dataclass 
 https://zetcode.com/python/dataclass/
+
+https://stackoverflow.com/questions/54797832/why-does-spark-submit-fail-with-error-executing-jupyter-command
+
+How to zip pyton files for a spark job?
+https://janetvn.medium.com/how-to-add-multiple-python-custom-modules-to-spark-job-6a8b943cdbbc
+
 
 Feature to turn off logging
 
@@ -154,3 +169,6 @@ https://stackoverflow.com/questions/46429962/how-to-redirect-entire-output-of-sp
 Add CICD so that CI test can be executed by commenting specific string in the gihub comment box.
 
 Packages used for 
+
+# References
+1. Image Source: https://datascientest.com/en/pyspark-the-python-library

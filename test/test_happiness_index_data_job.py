@@ -19,7 +19,7 @@ class TestHappinessJob(unittest.TestCase):
     # Using hardcoded file path as config directory is inside etl and relative path of data is different.
     # TODO: To move the config directory outside etl.
 
-    file_path = "../data/source_data/happiness_index_data"
+    file_path = "../resources/data/source_data/happiness_index_data"
     file_format = "csv"
     csv_schema = table_schema.happiness_data_schema
 

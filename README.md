@@ -1,59 +1,58 @@
-# pyspark_boilerplate
+# Pyspark Boilerplate
 
-This is a sample pyspark boilerplate application developed using object oriented programming and various Design Principles like
-Abstract Base Class (ABC), Factory Design and Singleton Design Patterns etc. 
+<img src="pyspark_boilerplate.png" alt="drawing" style="height:419px; width:1072px;"/>
 
-The goal behind developing this boilerplate is to provide a real exposure to Pyspark and python coding as a production 
+## Preface: 
+This is a sample pyspark project designed to work as a boilerplate application. This application is written by following 
+object oriented programming and various Design Principles like Abstract Base Class (ABC), Factory Design, Singleton Design Patterns etc. 
+
+The goal behind developing this project is to provide a real exposure to Pyspark and python coding as a production 
 environment. And make this boilerplate as production ready as possible using my limited knowledge and experience.
 
-This repo contains more than one way of doing same thing to demonstrate various ways of performing a similar task. 
+I have tried to add more than one way of doing same thing to demonstrate different ways of performing a similar task. 
 For example in order to fetch configs and Constants, 
 I am using following approach here:
-1. config file with extension .cfg/ini read and parsed by configparser in config_utils.py 
+1. Config file with extension .cfg/ini read and parsed by configparser in config_utils.py 
 2. Constants.py containing dictionary --  This has been replaced by Enum 
 3. Constants.py containing Enum class
 
 
-In terms of covering of spark topics, the repo tries to cover all of the High level topics mentioned here
+In terms of coverage of spark topics, the goal is to cover all of the High level spark features mentioned here
  - Spark SQL
  - Spark Streaming
  - MLlib
  - GraphX
 
-In order to use this boilerplate follow below instructions. 
-Setting up current project to the PYTHONPATH
-```commandline
-rootfolder="$(pwd)"
-export PYTHONPATH=$PYTHONPATH:$rootfolder
-```
-
-Creating requirements.txt file
-
-```commandline
-pip3 freeze > requirements.txt  #Python3
-```
-
-In order to avoid relative path issue, I have used package resources api from setuptools. 
-This change was added as part of pr 37. 
-
-How to run this app from command line:
-
-```
-export PYTHONPATH=$PYTHONPATH:/Users/my-user-name/path-to-code-repo
-python3 src/app/app.py --job_name air_asia_data_job
-```
-
-In order to run the job from individual files for testing purpose. Use this path for configUtil
-`config_path: str = "../config/pipeline.cfg"`
-
-All three pipelines runs successfully
-python3 src/app/app.py --job-name happiness_index_job
-python3 src/app/app.py --job-name bmi_data_job
-python3 src/app/app.py --job-name air_asia_data_job
+<img src="img.png" alt="drawing" style="width:500px;"/>
 
 
-makefile vs shell script
-https://unix.stackexchange.com/questions/496793/script-or-makefile-to-automate-new-user-creation/497601#497601
+### Setup: Running it locally
+In order to use this boilerplate follow the instructions mentioned below: 
+
+1. Set up the `PYTHONPATH`
+    ```commandline
+    rootfolder="$(pwd)"
+    export PYTHONPATH=$PYTHONPATH:$rootfolder
+    ```
+
+2. Run this app from command line: Currently there are total 3 pipelines as part of this project.
+In order to test the pipeline you can run any or all three jobs locally by running below command. 
+All three pipelines should run successfully
+
+    ```
+   python3 etl/etl_job.py --job_name air_asia_data_job
+   python3 src/app/app.py --job-name happiness_index_job
+   python3 src/app/app.py --job-name bmi_data_job
+    ```
+
+
+
+
+
+- In order to avoid relative path issue, I have tried package resources api from setuptools. 
+later on this was changed with a python file in root directory named `project_root_dir.py`
+The goal is to switch back to package resources api after the project is stable.
+
 
 
 ```	
@@ -74,10 +73,8 @@ export PYTHONPATH=PYTHONPATH:spark_etl/
 
 
 
-https://stackoverflow.com/questions/54797832/why-does-spark-submit-fail-with-error-executing-jupyter-command
 
-How to zip pyton files for a spark job?
-https://janetvn.medium.com/how-to-add-multiple-python-custom-modules-to-spark-job-6a8b943cdbbc
+
 ### Notes:
 
 What else to do 
