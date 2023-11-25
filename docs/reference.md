@@ -1,30 +1,31 @@
-python3 setup.py sdist --format=zip
+# References
+1. Image Source: https://datascientest.com/en/pyspark-the-python-library
+2. Shell Script: https://github.com/diogocavilha/respect-shell
+3. Python Versioning: https://towardsdatascience.com/setup-version-increment-and-automated-release-process-591d87ea1221
+    - https://github.com/mbalatsko/release-version-incremen
+4. Makefile vs ShellScript: https://unix.stackexchange.com/questions/496793/script-or-makefile-to-automate-new-user-creation/497601#497601
+5. Make Error, make: target is up to date - https://nono.ma/make-target-is-up-to-date
+6. Other links: 
+   - https://stackoverflow.com/questions/54797832/why-does-spark-submit-fail-with-error-executing-jupyter-command
+   - https://janetvn.medium.com/how-to-add-multiple-python-custom-modules-to-spark-job-6a8b943cdbbc
+   - https://stackoverflow.com/questions/46429962/how-to-redirect-entire-output-of-spark-submit-to-a-file
 
 
 
-How to manage version of a Python Project?
-# Versioning
-https://github.com/mbalatsko/release-version-incremen
-https://towardsdatascience.com/setup-version-increment-and-automated-release-process-591d87ea1221
+# Reference Commands: 
 
-# Shell Script
-https://github.com/koalaman/shellcheck/wiki/SC2164
-https://github.com/diogocavilha/respect-shell
-
-
-# Python clean and build command
+1. Python clean and build command
 python3 setup.py clean
 python3 setup.py sdist --format=zip
 
 
-Creating requirements.txt file
+2. Creating requirements.txt file
 
 ```commandline
 pip3 freeze > requirements.txt  #Python3
 ```
 
-
-# Make File
+3. Make File Analysis using ChatGPT
 
 ```pytest -vvv -rf -q --cov --cov-report term $(PY_MODULES) $(PYTESTFLAGS)```
 
@@ -69,8 +70,6 @@ Here's how it works:
 - The $(PY_MODULES) variable should contain a space-separated list of Python module file paths to be checked by isort.
 So when you run make test-isort, it will execute the isort command on the specified modules, checking their import order against the specified style rules and printing a diff of any changes that would be made.
 
-
-
 ```
 coverage:
 	coverage run --source=. -m unittest discover tests/
@@ -91,84 +90,11 @@ This assumes that you have installed the coverage package and your unit tests ar
 You can add this target to your existing Makefile by simply appending these lines to the end of the file. Then you can run make coverage to run your unit tests with coverage measurement and produce coverage reports in both the terminal and a HTML file. The HTML report will be saved in a htmlcov/ directory.
 
 
-## Make is Up to Date Error:
-https://nono.ma/make-target-is-up-to-date
+#### Backup Notes from readme file:
+I have tried to add more than one way of doing same thing to demonstrate different ways of performing a similar task. 
+For example in order to fetch configs and Constants, 
+I am using following approach here:
+1. Config file with extension .cfg/ini read and parsed by configparser in config_utils.py 
+2. Constants.py containing dictionary --  This has been replaced by Enum 
+3. Constants.py containing Enum class
 
-
-makefile vs shell script
-https://unix.stackexchange.com/questions/496793/script-or-makefile-to-automate-new-user-creation/497601#497601
-
-
-
-Implement Logging Decorator Function as given below
-https://towardsdatascience.com/python-decorators-for-data-science-6913f717669a
-
-
-Implement Timing Decorator Function to get runtime 
-https://towardsdatascience.com/python-decorators-for-data-science-6913f717669a
-
-Use Dataclass 
-https://zetcode.com/python/dataclass/
-
-https://stackoverflow.com/questions/54797832/why-does-spark-submit-fail-with-error-executing-jupyter-command
-
-How to zip pyton files for a spark job?
-https://janetvn.medium.com/how-to-add-multiple-python-custom-modules-to-spark-job-6a8b943cdbbc
-
-
-Feature to turn off logging
-
-
-logs directory, should it be pushed as part of deployment?
-Configurable logging
-
-
-#### What are advantages and disadvantages of using zip as python application?
-
-
-### How to avoid path conflict in python? like when we give relative path of config file, or logs directory, This fails when environment changes. 
-
-By using Absolute Path:
-```python
-import os
-
-# get the absolute path to the directory containing the script
-script_dir = os.path.dirname(os.path.abspath(__file__))
-
-# use the absolute path to the config file
-config_file_path = os.path.join(script_dir, 'config.ini')
-
-# use the absolute path to the log directory
-log_dir_path = os.path.join(script_dir, 'logs')
-
-```
-
-Or by using Environment Variable
-
-```python
-import os
-
-# get the absolute path to the directory containing the script
-script_dir = os.path.dirname(os.path.abspath(__file__))
-
-# use the absolute path to the config file
-config_file_path = os.path.join(script_dir, 'config.ini')
-
-# use the absolute path to the log directory
-log_dir_path = os.path.join(script_dir, 'logs')
-
-```
-
-
-How to redirect entire output of spark-submit to a file
-https://stackoverflow.com/questions/46429962/how-to-redirect-entire-output-of-spark-submit-to-a-file
-
-
-
-# ToDo:
-Add CICD so that CI test can be executed by commenting specific string in the gihub comment box.
-
-Packages used for 
-
-# References
-1. Image Source: https://datascientest.com/en/pyspark-the-python-library

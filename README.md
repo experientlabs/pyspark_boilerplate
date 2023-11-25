@@ -1,6 +1,6 @@
 # Pyspark Boilerplate
 
-<img src="pyspark_boilerplate.png" alt="drawing" style="height:419px; width:1072px;"/>
+<img src="resources/images/pyspark_boilerplate.png" alt="drawing" style="height:419px; width:1072px;"/>
 
 ## Preface: 
 This is a sample pyspark project designed to work as a boilerplate application. This application is written by following 
@@ -9,24 +9,17 @@ object oriented programming and various Design Principles like Abstract Base Cla
 The goal behind developing this project is to provide a real exposure to Pyspark and python coding as a production 
 environment. And make this boilerplate as production ready as possible using my limited knowledge and experience.
 
-I have tried to add more than one way of doing same thing to demonstrate different ways of performing a similar task. 
-For example in order to fetch configs and Constants, 
-I am using following approach here:
-1. Config file with extension .cfg/ini read and parsed by configparser in config_utils.py 
-2. Constants.py containing dictionary --  This has been replaced by Enum 
-3. Constants.py containing Enum class
-
-
 In terms of coverage of spark topics, the goal is to cover all of the High level spark features mentioned here
  - Spark SQL
  - Spark Streaming
  - MLlib
  - GraphX
 
-<img src="img.png" alt="drawing" style="width:500px;"/>
+<img src="resources/images/apache_spark_components.png" alt="drawing" style="width:500px;"/>
 
+[TOC]
 
-### Setup: Running it locally
+### Setup: Manually running it locally
 In order to use this boilerplate follow the instructions mentioned below: 
 
 1. Set up the `PYTHONPATH`
@@ -39,17 +32,29 @@ In order to use this boilerplate follow the instructions mentioned below:
 In order to test the pipeline you can run any or all three jobs locally by running below command. 
 All three pipelines should run successfully
 
-    ```
+    ```commandline
    python3 etl/etl_job.py --job_name air_asia_data_job
    python3 src/app/app.py --job-name happiness_index_job
    python3 src/app/app.py --job-name bmi_data_job
     ```
+   or use the spark-submit command as below
+   ```commandline
+   spark-submit etl/etl_job.py --job-name air_asia_data_job
+   ```
+
+### Using Makefile
+Alternative to above steps, you can directly use makefile to perform above actions in a single command. 
+```commandline
+make run-code
+```
+The above make command runs spark-submit command so the console log will contain spark logs as well.
+
+
+# Packaging and distribution
 
 
 
-
-
-- In order to avoid relative path issue, I have tried package resources api from setuptools. 
+In order to avoid relative path issue, I have tried `package resources api` from setuptools. 
 later on this was changed with a python file in root directory named `project_root_dir.py`
 The goal is to switch back to package resources api after the project is stable.
 
