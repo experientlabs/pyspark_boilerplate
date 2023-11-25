@@ -9,7 +9,7 @@ import datetime
 import os
 import sys
 import time
-from etl.job_factory import JobFactory
+from etl.utils.job_factory import JobFactory
 from etl.utils.logging_utils import Logger
 
 

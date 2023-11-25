@@ -7,7 +7,7 @@
 from pyspark.sql import DataFrame
 from pyspark.sql.functions import col, lit, when
 
-from etl.job import Job
+from etl.utils.job import Job
 from etl.utils import spark_utils
 from etl.config import config_utils
 from etl.utils.logging_utils import Logger
