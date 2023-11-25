@@ -9,8 +9,28 @@
    - https://stackoverflow.com/questions/54797832/why-does-spark-submit-fail-with-error-executing-jupyter-command
    - https://janetvn.medium.com/how-to-add-multiple-python-custom-modules-to-spark-job-6a8b943cdbbc
    - https://stackoverflow.com/questions/46429962/how-to-redirect-entire-output-of-spark-submit-to-a-file
+   - How to enforce schema on Pyspark Job?
+     - https://github.com/MrPowers/quinn/blob/main/quinn/dataframe_validator.py
+     - https://stackoverflow.com/questions/63040466/enforcing-schema-for-pyspark-job
+
+   - How to write a single csv file without a Folder?
+     - https://stackoverflow.com/questions/43661660/spark-how-to-write-a-single-csv-file-without-folder/60442604#60442604
+7. Reference projects
+   - https://github.com/mehd-io/pyspark-boilerplate-mehdio/blob/master/docker/script/package_zip.sh
 
 
+# Link of Data
+List of websites that provide Real time data.
+1. https://data.nasa.gov
+2. flight status api
+3. https://developer.accuveather.com
+4. Twitter APIs
+5. News APIs
+
+List of Streaming Data for Spark Streaming. 
+1. To be added
+2. Music Reommendation Dataset 
+   - http://ocelma.net/MusicRecommendationDataset/lastfm-1K.html
 
 # Reference Commands: 
 

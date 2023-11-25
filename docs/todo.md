@@ -1,4 +1,5 @@
 # High level TODO
+- Add Architecture Diagram.
 - Refactoring to make it compatible
 - Feature to turn off logging
 - Feature for Dry Run
@@ -17,3 +18,14 @@
 1. package resources API to get rid of `project_root_dir.py`.
 2. path lib to avoid path conflict between windows and linux. 
 
+
+### Notes:
+What else to do 
+1. CI-CD
+2. Secrets Manager/ Hashicorp Vault
+3. Spark Streaming
+4. Spark ML
+5. Graph Processing
+6. Python Shiny Graph
+7. Airflow DAG
+8. Packaging and Distribution

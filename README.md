@@ -80,42 +80,6 @@ export PYTHONPATH=PYTHONPATH:spark_etl/
 
 
 
-### Notes:
-
-What else to do 
-1. CI-CD
-2. Secrets Manager/ Hashicorp Vault
-3. Spark Streaming
-4. Spark ML
-5. Graph Processing
-6. Python Shiny Graph
-7. Airflow DAG
-8. Packaging and Distribution
-
-
-List of websites that provide Real time data.
-1. https://data.nasa.gov
-2. flight status api
-3. https://developer.accuveather.com
-4. Twitter APIs
-5. News APIs
-
-List of Streaming Data for Spark Streaming. 
-
-
-How to enforce schema on Pyspark Job?
-https://github.com/MrPowers/quinn/blob/main/quinn/dataframe_validator.py
-https://stackoverflow.com/questions/63040466/enforcing-schema-for-pyspark-job
-
-
-How to write a single csv file without a Folder?
-https://stackoverflow.com/questions/43661660/spark-how-to-write-a-single-csv-file-without-folder/60442604#60442604
-
-
-http://ocelma.net/MusicRecommendationDataset/lastfm-1K.html
-
-Why config directory should be out of src?
-
 
 https://stackoverflow.com/questions/67267683/do-we-need-if-name-main-unittest-main-in-every-unit-tests-file
 
@@ -126,7 +90,7 @@ https://github.com/orgs/community/discussions/25389
 What is decorator design pattern? Provide at least one example of Decorator Design Pattern in this code?
 
 
-https://github.com/mehd-io/pyspark-boilerplate-mehdio/blob/master/docker/script/package_zip.sh
+
 
 
 
