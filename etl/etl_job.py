@@ -9,8 +9,8 @@ import datetime
 import os
 import sys
 import time
-from etl.utils.job_factory import JobFactory
-from etl.utils.logging_utils import Logger
+from utils.job_factory import JobFactory
+from utils.logging_utils import Logger
 
 
 sys.path.append(os.path.abspath(os.path.dirname(__file__)))
