@@ -81,18 +81,4 @@ Which should be set to PYSPARK_DRIVER_PYTHON=python.
 
 export PYSPARK_DRIVER_PYTHON=python
 export PYTHONPATH=PYTHONPATH:spark_etl/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+export PYTHONPATH=PYTHONPATH:spark_etl-0.0.1.zip/

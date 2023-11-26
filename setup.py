@@ -32,8 +32,8 @@ setup(
     license='CC BY-NC 4.0',
     python_requires='>=3.7',
     entry_points={
-        "console_scripts": [
-            "app=et.etl_job.app:app",
+        'console_scripts': [
+            'etl_job = etl.etl_job:main',
         ],
     },
 

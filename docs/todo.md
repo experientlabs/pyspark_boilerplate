@@ -29,6 +29,9 @@ What else to do
 2. Secrets Manager/ Hashicorp Vault
 3. Spark Streaming
 4. Spark ML
+   - pack size optimization.
+   - mark-up, mark-down.
+   - floor price prediction.
 5. Graph Processing
 6. Python Shiny Graph
 7. Airflow DAG
