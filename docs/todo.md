@@ -43,3 +43,7 @@ Using function as a decorator:
 - Implement @staticmethod
 - Implement ABC
 - Use @dataclass(frozen = true)
+
+
+To avoid the compatibility issue with docker image, I have used pyspark==3.2.4 
+But the goal is to update it back to 3.5 or the latest version, Alsong with docker image.

@@ -80,5 +80,6 @@ Below stackoverflow article answers this problem. That has to do with  PYSPARK_D
 Which should be set to PYSPARK_DRIVER_PYTHON=python. 
 
 export PYSPARK_DRIVER_PYTHON=python
-export PYTHONPATH=PYTHONPATH:spark_etl/
-export PYTHONPATH=PYTHONPATH:spark_etl-0.0.1.zip/
+rootfolder="$(pwd)"
+export PYTHONPATH=$PYTHONPATH:$rootfolder/spark_etl/etl
+export PYTHONPATH=$PYTHONPATH:spark_etl-0.0.1.zip/

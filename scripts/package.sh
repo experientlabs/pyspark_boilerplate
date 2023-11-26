@@ -6,7 +6,7 @@ mkdir to_upload
 pip3 freeze > requirements.txt
 pip3 -q install -r requirements.txt -t to_upload
 #rm -r requirements.txt
-cp -r {setup.py,tasks.py,project_root_dir.py,etl,README.md,VERSION} to_upload
+cp -r {setup.py,tasks.py,project_root_dir.py,etl,README.md,VERSION,MANIFEST.in} to_upload
 cd to_upload || exit
 
 version=$(echo `python3 setup.py --version` | sed s/_/-/g)

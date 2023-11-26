@@ -36,7 +36,6 @@ setup(
             'etl_job = etl.etl_job:main',
         ],
     },
-
     test_suite='tests',
     project_urls={
         "Bug Reports": "https://github.com/experientlabs/pyspark_boilerplate/issues",
