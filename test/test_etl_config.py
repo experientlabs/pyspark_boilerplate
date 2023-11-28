@@ -1,7 +1,7 @@
 import unittest
 
-from src.config.etl_config import aa_params
-from src.utils.common import DotDict
+from etl.config.etl_config import aa_params
+from etl.utils.common import DotDict
 
 
 class TestEtlConfig(unittest.TestCase):

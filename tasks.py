@@ -64,7 +64,7 @@ def project_root(c):
 
 @task
 def spark_submit_command(c, job_name):
-    # spark-submit --py-files spark_etl.zip src/app/app.py --job-name air_asia_data_job
-    # return f"spark-submit --py-files spark_etl.zip src/app/app.py --job-name {job_name}"
+    # spark-submit --py-files spark_etl.zip etl/app/etl_job.py --job-name air_asia_data_job
+    # return f"spark-submit --py-files spark_etl.zip etl/app/etl_job.py --job-name {job_name}"
     os.system(f"spark-submit --py-files spark_etl.zip src/app/app.py --job-name {job_name}")
 

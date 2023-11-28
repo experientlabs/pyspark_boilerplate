@@ -7,11 +7,11 @@
 from pyspark.sql import DataFrame
 from pyspark.sql.functions import col, lit, when
 
-from src.app.job import Job
-from src.utils import spark_utils
-from src.config import config_utils
-from src.utils.logging_utils import Logger
-from src.utils.table_schema import happiness_data_schema
+from etl.utils.job import Job
+from etl.utils import spark_utils
+from etl.config import config_utils
+from etl.utils.logging_utils import Logger
+from etl.utils.table_schema import happiness_data_schema
 
 
 class HappinessIndex(Job):

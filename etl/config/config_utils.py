@@ -7,7 +7,8 @@
 import configparser
 import os
 
-from src.utils.logging_utils import Logger
+from project_root_dir import project_root_dir
+from etl.utils.logging_utils import Logger
 
 
 class ConfigUtil:
@@ -15,7 +16,7 @@ class ConfigUtil:
     This class provides access to pipeline configs stored in pipeline.cfg
     """
 
-    def __init__(self, config_path: str = "/home/sanjeet/Desktop/git_pod_el/pyspark_framework-main/src/config/pipeline.cfg"):
+    def __init__(self, config_path: str = project_root_dir + "/etl/config/pipeline.cfg"):
         self.cfg_path = config_path
 
     logger = Logger(__name__).get_logger()

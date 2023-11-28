@@ -3,10 +3,11 @@ __pycache__/
 __pypackages__/
 venv/
 #logs/
-data/target_data/
-data/source_data/aa_data
+resources/data/target_data/
+resources/data/source_data/aa_data
 target/
 logs/log_*
 lgos/
 dist
 spark_etl.egg-info
+to_upload/

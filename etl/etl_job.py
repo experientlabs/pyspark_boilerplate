@@ -2,15 +2,15 @@
 # ------------------------------------------------------------------------
 # Created By  :     'Sanjeet Shukla'
 # Created Date:     16/01/23 9:19 pm
-# File:             app.py.py
+# File:             etl_job.py.py
 # -----------------------------------------------------------------------
 import argparse
 import datetime
 import os
 import sys
 import time
-from src.app.job_factory import JobFactory
-from src.utils.logging_utils import Logger
+from utils.job_factory import JobFactory
+from utils.logging_utils import Logger
 
 
 sys.path.append(os.path.abspath(os.path.dirname(__file__)))
@@ -20,7 +20,7 @@ sys.path.append(os.path.abspath(os.path.dirname(__file__)))
 
 class App:
     logger = Logger(__name__).get_logger()
-    logger.info("inside app.py")
+    logger.info("inside etl_job.py")
 
     # TODO: Implement Decorator Timing Function.
     # https://towardsdatascience.com/python-decorators-for-data-science-6913f717669a

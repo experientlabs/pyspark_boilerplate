@@ -1,0 +1,3 @@
+include tasks.py
+include VERSION
+include project_root_dir.py

@@ -6,7 +6,7 @@
 # -----------------------------------------------------------------------
 import unittest
 
-from src.utils.column_constants import Columns
+from etl.utils.column_constants import Columns
 
 
 class TestColumnConstants(unittest.TestCase):

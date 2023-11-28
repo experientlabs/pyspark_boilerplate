@@ -4,10 +4,10 @@
 # Created Date:     16/01/23 9:19 pm
 # File:             job_factory.py
 # -----------------------------------------------------------------------
-from src.data_jobs.BMI_data_job import BMIDataJob
-from src.data_jobs.air_asia_data_job import AirADataJob
-from src.data_jobs.happiness_index_data_job import HappinessIndex
-from src.utils.logging_utils import Logger
+from etl.data_jobs.BMI_data_job import BMIDataJob
+from etl.data_jobs.air_asia_data_job import AirADataJob
+from etl.data_jobs.happiness_index_data_job import HappinessIndex
+from etl.utils.logging_utils import Logger
 
 
 class JobFactory:

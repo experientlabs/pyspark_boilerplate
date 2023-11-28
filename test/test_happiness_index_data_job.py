@@ -9,17 +9,17 @@ import unittest
 
 from pyspark.sql.functions import col
 from pyspark.sql.types import StructType, StructField, IntegerType
-from src.utils import spark_utils, table_schema
+from etl.utils import spark_utils, table_schema
 
 
 class TestHappinessJob(unittest.TestCase):
     utils = spark_utils.SparkUtils()
     spark = utils.get_spark_session("happiness_index_job")
 
-    # Using hardcoded file path as config directory is inside src and relative path of data is different.
-    # TODO: To move the config directory outside src.
+    # Using hardcoded file path as config directory is inside etl and relative path of data is different.
+    # TODO: To move the config directory outside etl.
 
-    file_path = "../data/source_data/happiness_index_data"
+    file_path = "../resources/data/source_data/happiness_index_data"
     file_format = "csv"
     csv_schema = table_schema.happiness_data_schema
 

@@ -1,4 +1,4 @@
-PY_MODULES=src test
+PY_MODULES=etl test
 CONFIGFILE=setup.cfg
 DOCKER_REGISTRY=sshukla
 IMAGE_NAME=myspark
@@ -67,8 +67,9 @@ run-package:
 
 #------------ RUN/DEBUG  -------------------------------------------------------
 run-code:
-	#export PYTHONPATH=/home/archana/Desktop/git-repo/pyspark_framework
-	spark-submit src/app/app.py --job-name air_asia_data_job
+	rootfolder="$(pwd)"
+	export PYTHONPATH=$PYTHONPATH:$rootfolder
+	spark-submit etl/etl_job.py --job-name air_asia_data_job
 
 #------------ DOCKER -----------------------------------------------------------
 # build-docker: ### Build the docker image

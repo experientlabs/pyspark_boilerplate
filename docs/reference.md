@@ -1,18 +1,54 @@
+# References
+1. Image Source: https://datascientest.com/en/pyspark-the-python-library
+2. Shell Script: https://github.com/diogocavilha/respect-shell
+3. Python Versioning: https://towardsdatascience.com/setup-version-increment-and-automated-release-process-591d87ea1221
+    - https://github.com/mbalatsko/release-version-incremen
+4. Makefile vs ShellScript: https://unix.stackexchange.com/questions/496793/script-or-makefile-to-automate-new-user-creation/497601#497601
+5. Make Error, make: target is up to date - https://nono.ma/make-target-is-up-to-date
+6. Other links: 
+   - https://stackoverflow.com/questions/54797832/why-does-spark-submit-fail-with-error-executing-jupyter-command
+   - https://janetvn.medium.com/how-to-add-multiple-python-custom-modules-to-spark-job-6a8b943cdbbc
+   - https://stackoverflow.com/questions/46429962/how-to-redirect-entire-output-of-spark-submit-to-a-file
+   - https://stackoverflow.com/questions/67267683/do-we-need-if-name-main-unittest-main-in-every-unit-tests-file
+   - https://stackoverflow.com/questions/25436312/gitignore-not-working
+   - https://stackoverflow.com/questions/38776517/how-to-discard-local-changes-and-pull-latest-from-github-repository
+   - How to enforce schema on Pyspark Job?
+     - https://github.com/MrPowers/quinn/blob/main/quinn/dataframe_validator.py
+     - https://stackoverflow.com/questions/63040466/enforcing-schema-for-pyspark-job
+
+   - How to write a single csv file without a Folder?
+     - https://stackoverflow.com/questions/43661660/spark-how-to-write-a-single-csv-file-without-folder/60442604#60442604
+7. Reference projects
+   - https://github.com/mehd-io/pyspark-boilerplate-mehdio/blob/master/docker/script/package_zip.sh
+
+
+# Link of Data
+List of websites that provide Real time data.
+1. https://data.nasa.gov
+2. flight status api
+3. https://developer.accuveather.com
+4. Twitter APIs
+5. News APIs
+
+List of Streaming Data for Spark Streaming. 
+1. To be added
+2. Music Reommendation Dataset 
+   - http://ocelma.net/MusicRecommendationDataset/lastfm-1K.html
+
+# Reference Commands: 
+
+1. Python clean and build command
+python3 setup.py clean
 python3 setup.py sdist --format=zip
 
 
+2. Creating requirements.txt file
 
-How to manage version of a Python Project?
-# Versioning
-https://github.com/mbalatsko/release-version-incremen
-https://towardsdatascience.com/setup-version-increment-and-automated-release-process-591d87ea1221
+```commandline
+pip3 freeze > requirements.txt  #Python3
+```
 
-# Shell Script
-https://github.com/koalaman/shellcheck/wiki/SC2164
-https://github.com/diogocavilha/respect-shell
-
-
-# Make File
+3. Make File Analysis using ChatGPT
 
 ```pytest -vvv -rf -q --cov --cov-report term $(PY_MODULES) $(PYTESTFLAGS)```
 
@@ -51,13 +87,11 @@ Here's how it works:
 - The command to run is isort -l80 -m3 -c --tc $(PY_MODULES).
 - The isort command checks the import order of the specified modules.
 - The -l80 flag sets the line length to 80 characters.
-- The -m3 flag sets the multi-line import style to "vertial hanging indent".
+- The -m3 flag sets the multi-line import style to "vertical hanging indent".
 - The -c flag makes isort only check the import order and not apply any changes.
 - The --tc flag prints a unified diff of the changes that would be made by isort.
 - The $(PY_MODULES) variable should contain a space-separated list of Python module file paths to be checked by isort.
 So when you run make test-isort, it will execute the isort command on the specified modules, checking their import order against the specified style rules and printing a diff of any changes that would be made.
-
-
 
 ```
 coverage:
@@ -79,73 +113,17 @@ This assumes that you have installed the coverage package and your unit tests ar
 You can add this target to your existing Makefile by simply appending these lines to the end of the file. Then you can run make coverage to run your unit tests with coverage measurement and produce coverage reports in both the terminal and a HTML file. The HTML report will be saved in a htmlcov/ directory.
 
 
-## Make is Up to Date Error:
-https://nono.ma/make-target-is-up-to-date
+### Notes from readme file:
 
+#### Note-1
+I have tried to add more than one way of doing same thing to demonstrate different ways of performing a similar task. 
+For example in order to fetch configs and Constants, 
+I am using following approach here:
+1. Config file with extension .cfg/ini read and parsed by configparser in config_utils.py 
+2. Constants.py containing dictionary --  This has been replaced by Enum 
+3. Constants.py containing Enum class
 
-
-
-
-Implement Logging Decorator Function as given below
-https://towardsdatascience.com/python-decorators-for-data-science-6913f717669a
-
-
-Implement Timing Decorator Function to get runtime 
-https://towardsdatascience.com/python-decorators-for-data-science-6913f717669a
-
-Use Dataclass 
-https://zetcode.com/python/dataclass/
-
-Feature to turn off logging
-
-
-logs directory, should it be pushed as part of deployment?
-Configurable logging
-
-
-#### What are advantages and disadvantages of using zip as python application?
-
-
-### How to avoid path conflict in python? like when we give relative path of config file, or logs directory, This fails when environment changes. 
-
-By using Absolute Path:
-```python
-import os
-
-# get the absolute path to the directory containing the script
-script_dir = os.path.dirname(os.path.abspath(__file__))
-
-# use the absolute path to the config file
-config_file_path = os.path.join(script_dir, 'config.ini')
-
-# use the absolute path to the log directory
-log_dir_path = os.path.join(script_dir, 'logs')
-
-```
-
-Or by using Environment Variable
-
-```python
-import os
-
-# get the absolute path to the directory containing the script
-script_dir = os.path.dirname(os.path.abspath(__file__))
-
-# use the absolute path to the config file
-config_file_path = os.path.join(script_dir, 'config.ini')
-
-# use the absolute path to the log directory
-log_dir_path = os.path.join(script_dir, 'logs')
-
-```
-
-
-How to redirect entire output of spark-submit to a file
-https://stackoverflow.com/questions/46429962/how-to-redirect-entire-output-of-spark-submit-to-a-file
-
-
-
-# ToDo:
-Add CICD so that CI test can be executed by commenting specific string in the gihub comment box.
-
-Packages used for 
+#### Note-2
+In order to avoid relative path issue, I have tried `package resources api` from setuptools. 
+later on this was changed with a python file in root directory named `project_root_dir.py`
+The goal is to switch back to package resources api after the project is stable.
