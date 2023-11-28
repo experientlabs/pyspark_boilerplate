@@ -33,13 +33,15 @@ In order to test the pipeline you can run any or all three jobs locally by runni
 All three pipelines should run successfully
 
     ```commandline
-   python3 etl/etl_job.py --job_name air_asia_data_job
-   python3 src/app/app.py --job-name happiness_index_job
-   python3 src/app/app.py --job-name bmi_data_job
+   python3 etl/etl_job.py --job-name air_asia_data_job
+   python3 etl/etl_job.py --job-name happiness_index_job
+   python3 etl/etl_job.py --job-name bmi_data_job
     ```
    or use the spark-submit command as below
    ```commandline
    spark-submit etl/etl_job.py --job-name air_asia_data_job
+   spark-submit etl/etl_job.py --job-name bmi_data_job
+   spark-submit etl/etl_job.py --job-name happiness_index_job
    ```
 
 ### Using Makefile
@@ -83,3 +85,10 @@ export PYSPARK_DRIVER_PYTHON=python
 rootfolder="$(pwd)"
 export PYTHONPATH=$PYTHONPATH:$rootfolder/spark_etl/etl
 export PYTHONPATH=$PYTHONPATH:spark_etl-0.0.1.zip/
+
+Running in docker container: 
+rootfolder="$(pwd)"
+export PYTHONPATH=$PYTHONPATH:$rootfolder/spark_etl
+export PYSPARK_DRIVER_PYTHON=$PYSPARK_DRIVER_PYTHON:/usr/local/bin/python3
+export PYSPARK_PYTHON=/usr/local/bin/python3
+spark-submit spark_etl/etl/etl_job.py --job-name air_asia_data_job
