@@ -15,6 +15,7 @@ from etl.data_jobs.air_asia_helper import AirAHelper
 from etl.utils import spark_utils
 from etl.utils.column_constants import Columns
 from etl.utils.logging_utils import Logger
+from project_root_dir import project_root_dir
 
 
 class AirADataJob(Job):
@@ -25,7 +26,7 @@ class AirADataJob(Job):
 
     logger = Logger(__name__).get_logger()
     configutil = config_utils.ConfigUtil()
-    superman_landing_path = configutil.get_config(
+    superman_landing_path = project_root_dir + configutil.get_config(
         "IO_CONFIGS", "AA_LANDING_PATH"
     )
     random_user_landing_path = configutil.get_config(
