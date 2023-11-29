@@ -31,11 +31,17 @@ class ConfigUtil:
         try:
             config = configparser.ConfigParser()
             config.read(self.cfg_path)
-            return config.get(section, config_name)
+            return project_root_dir + "/" + config.get(section, config_name)
         except IOError as exp:
             self.logger.error(f"error reading config file {str(exp)}")
 
 
+if __name__ == '__main__':
+    path = project_root_dir
+    print(path)
+    configutil = ConfigUtil()
+    landing_path = configutil.get_config("IO_CONFIGS", "AA_LANDING_PATH")
+    print(landing_path)
 
 
 
