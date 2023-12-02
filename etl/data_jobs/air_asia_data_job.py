@@ -5,7 +5,6 @@
 # File:             air_asia_data_job.py
 # -----------------------------------------------------------------------
 import os
-import pathlib
 import re
 
 from pyspark.sql.functions import split, count
