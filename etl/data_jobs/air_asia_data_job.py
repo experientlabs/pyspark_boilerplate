@@ -5,6 +5,7 @@
 # File:             air_asia_data_job.py
 # -----------------------------------------------------------------------
 import os
+import pathlib
 import re
 
 from pyspark.sql.functions import split, count
@@ -67,14 +68,14 @@ class AirADataJob(Job):
                 self.url, self.random_user_landing_path
             )
             self.logger.info(
-                f"dataset dumped on {self.random_user_landing_path}"
+                f"dataset dumped on {os.path.abspath(self.random_user_landing_path)}"
             )
 
             self.process_api_data(
                 self.random_user_landing_path, self.random_user_target_path
             )
             self.logger.info(
-                f"placed process data at {self.random_user_target_path}"
+                f"placed processed data at {os.path.abspath(self.random_user_target_path)}"
             )
 
         except Exception as exp:
