@@ -141,6 +141,6 @@ class PackagePathFilter(logging.Filter):
         return True
 
 
-if __name__ == "__main__":
-    logger: Logger = Logger("test")
-    path = os.path.abspath(logger.LOG_DIRECTORY)
+# if __name__ == "__main__":
+#     logger: Logger = Logger("test")
+#     path = os.path.abspath(logger.LOG_DIRECTORY)
