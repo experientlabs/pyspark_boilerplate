@@ -1,5 +1,5 @@
-name: Deploy Code
-# Deploy the code
-
-on:
-  workflow_dispatch
+#name: Deploy Code
+## Deploy the code
+#
+#on:
+#  workflow_dispatch
