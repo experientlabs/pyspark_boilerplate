@@ -143,6 +143,6 @@ class AirADataJob(Job):
             raise
 
 
-# if __name__ == "__main__":
-#     air_data_job: AirADataJob = AirADataJob("air_asia_data_job")
-#     air_data_job.run()
+if __name__ == "__main__":
+    air_data_job: AirADataJob = AirADataJob("air_asia_data_job")
+    air_data_job.run()

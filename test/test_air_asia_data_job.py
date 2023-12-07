@@ -6,6 +6,7 @@
 # -----------------------------------------------------------------------
 import unittest
 
+from etl.data_jobs.air_asia_data_job import AirADataJob
 from etl.utils import spark_utils
 from etl.config import config_utils
 
@@ -21,6 +22,13 @@ class TestAirA(unittest.TestCase):
     config_path = "../etl/config/pipeline.cfg"
     configutil = config_utils.ConfigUtil(config_path)
     configutil.get_config("IO_CONFIGS", "INPUT_DATA_PATH")
+
+    def test_read_superman_json_from_web(self, mocker):
+        mocker.patch.object(AirADataJob, 'run', return_value=None)
+        job = AirADataJob("air_a_data_job")
+        job.aa_helper.read_json_from_web = mocker.Mock()
+        job.run()
+        job.aa_helper.read_json_from_web.assert_called_once_with(job.json_url, job.superman_landing_path)
 
     def test_aa_data_job(self):
         pass
