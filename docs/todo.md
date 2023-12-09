@@ -11,7 +11,7 @@
 - Integration Test
 - Versioning
 - Documentation
-- Command line parameters to make file
+- Command line parameters for make file (Make)
 - Add CICD so that CI test can be executed by commenting specific string in the gihub comment box.
 - [Decorators](https://towardsdatascience.com/python-decorators-for-data-science-6913f717669a)
 - Monads

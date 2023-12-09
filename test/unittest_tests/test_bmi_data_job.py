@@ -128,5 +128,6 @@ class TestBMIDataJob(unittest.TestCase):
         mock_df.filter.return_value.count.assert_called_once()
         self.assertEqual(result, 42)
 
+
 if __name__ == "__main__":
     unittest.main()
