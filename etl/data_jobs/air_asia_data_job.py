@@ -131,7 +131,7 @@ class AirADataJob(Job):
             )
             df1 = df.select(
                 Columns.GENDER,
-                split("email", "@")[1].alias("email_provider"),
+                split("email", "@", -1)[1].alias("email_provider"),
                 "username",
             )
             df2 = df1.groupby("gender", "email_provider").agg(count("username"))

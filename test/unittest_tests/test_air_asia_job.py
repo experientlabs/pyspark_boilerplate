@@ -4,15 +4,10 @@ import unittest
 from etl.config import config_utils
 from etl.data_jobs.air_asia_data_job import AirADataJob
 from etl.utils import spark_utils
+from test.utils_functions import update_unittest_path
 
 
 class TestAirADataJob(unittest.TestCase):
-    # utils = spark_utils.SparkUtils()
-    # spark = utils.get_spark_session("air_asia_data_job")
-    #
-    # config_path = "../etl/config/pipeline.cfg"
-    # configutil = config_utils.ConfigUtil(config_path)
-    # configutil.get_config("IO_CONFIGS", "INPUT_DATA_PATH")
 
     #  Read the nested json file from url and process it
     def test_read_nested_json(self):
@@ -34,8 +29,13 @@ class TestAirADataJob(unittest.TestCase):
 
     #  Flatten json data
     def test_flatten_json(self):
+        """
+        In real project there should be test data setup, here we are using real data for test purpose
+        As data volume is very small.
+        """
         job = AirADataJob("air_asia_data_job")
-        json_list = job.flatten_json(job.superman_landing_path)
+        test_path = os.path.abspath(job.superman_landing_path).replace("test/unittest_tests", "")
+        json_list = job.flatten_json(test_path)
         # Assert that the returned json list is not empty
         self.assertTrue(len(json_list) > 0)
 
