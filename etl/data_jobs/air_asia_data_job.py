@@ -23,9 +23,6 @@ class AirADataJob(Job):
         self.spark = spark_utils.SparkUtils().get_spark_session("aa_data_job")
         self.aa_helper = AirAHelper(self.spark)
         self.logger = Logger(job_name).get_logger()
-        print("\n\n\n=====================================")
-        print(self.logger)
-        print("=====================================\n\n\n")
 
 
     configutil = config_utils.ConfigUtil()
