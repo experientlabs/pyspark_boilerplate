@@ -22,8 +22,12 @@ class AirADataJob(Job):
         self.job_name = job_name
         self.spark = spark_utils.SparkUtils().get_spark_session("aa_data_job")
         self.aa_helper = AirAHelper(self.spark)
+        self.logger = Logger(job_name).get_logger()
+        print("\n\n\n=====================================")
+        print(self.logger)
+        print("=====================================\n\n\n")
 
-    logger = Logger(__name__).get_logger()
+
     configutil = config_utils.ConfigUtil()
     superman_landing_path = configutil.get_config(
         "IO_CONFIGS", "AA_LANDING_PATH"
@@ -145,4 +149,4 @@ class AirADataJob(Job):
 
 if __name__ == "__main__":
     air_data_job: AirADataJob = AirADataJob("air_asia_data_job")
-    air_data_job.run()
+    # air_data_job.run()

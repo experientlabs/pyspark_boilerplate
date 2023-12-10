@@ -1,0 +1,3 @@
+gender,email_provider,count(username)
+female,example.com,67
+male,example.com,33

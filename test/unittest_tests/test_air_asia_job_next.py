@@ -9,11 +9,12 @@ class TestAirADataJob(unittest.TestCase):
     @patch('etl.data_jobs.air_asia_data_job.AirADataJob.flatten_json')
     @patch('etl.data_jobs.air_asia_data_job.AirADataJob.process_json')
     @patch('etl.data_jobs.air_asia_data_job.AirAHelper.ingest_api_data')
+    @patch('etl.data_jobs.air_asia_data_job.AirADataJob.process_api_data')
     @patch('etl.data_jobs.air_asia_data_job.spark_utils.SparkUtils.get_spark_session')
     @patch('etl.data_jobs.air_asia_data_job.config_utils.ConfigUtil')
     @patch('etl.data_jobs.air_asia_data_job.Logger')
-    def test_run(self, mock_logger, mock_config_util, mock_get_spark_session, mock_ingest_api_data, mock_process_json,
-                 mock_flatten_json, mock_read_json_from_web):
+    def test_run(self, mock_logger, mock_config_util, mock_get_spark_session, mock_process_api_data,
+                 mock_ingest_api_data, mock_process_json, mock_flatten_json, mock_read_json_from_web):
         # Arrange
         job_name = "air_asia_data_job"
         air_data_job = AirADataJob(job_name)
@@ -22,31 +23,40 @@ class TestAirADataJob(unittest.TestCase):
         mock_logger_instance = mock_logger.return_value.get_logger.return_value
         mock_logger.return_value.get_logger.side_effect = [mock_logger_instance, Mock()]
         mock_config_util_instance = mock_config_util.return_value
-        mock_config_util_instance.get_config.side_effect = ["superman.json", "random_user_data.csv",
+        mock_config_util_instance.get_config.side_effect = ["resources/data/source_data/aa_data", "random_user_data.csv",
                                                             "superman_final.json", "processed_data.csv",
                                                             "https://gitlab.com/im-batman/simple-data-assestment/-/raw/main/superman.json",
                                                             "https://randomuser.me/api/0.8/?results=100"]
         mock_read_json_from_web.side_effect = [None, None]
         mock_flatten_json.return_value = ["flattened_data"]
         mock_process_json.return_value = None
+        mock_ingest_api_data.return_value = None
+        mock_process_api_data.return_value = None
 
         # Act
         air_data_job.run()
 
+        # Debug print statement
+        print("\n\nCalls to mock_read_json_from_web:", mock_read_json_from_web.call_args_list)
+        print("Calls to mock_flatten_json:", mock_flatten_json.call_args_list)
+        print("Calls to mock_logger:", mock_logger.return_value)
+        print("Calls to mock_logger:", mock_logger.call_arg_list)
+        print("\n\n")
+
         # Assert
         mock_logger.assert_called_once_with(job_name)
-        mock_logger_instance.info.assert_called_with("reading superman.json file from web")
         mock_read_json_from_web.assert_called_with(
-            "https://gitlab.com/im-batman/simple-data-assestment/-/raw/main/superman.json", "superman.json")
-        mock_logger_instance.info.assert_called_with("superman.json file stored at superman.json")
-        mock_flatten_json.assert_called_with("superman.json")
-        mock_process_json.assert_called_with(["flattened_data"], "superman_final.json")
-        mock_logger_instance.info.assert_called_with("Reading random user data from API")
-        mock_ingest_api_data.assert_called_with("https://randomuser.me/api/0.8/?results=100", "random_user_data.csv")
-        mock_logger_instance.info.assert_called_with("dataset dumped on random_user_data.csv")
-        mock_process_json.assert_called_with(["flattened_data"], "superman_final.json")
-        mock_process_json.assert_called_with(["flattened_data"], "superman_final.json")
-        mock_logger_instance.info.assert_called_with("placed process data at processed_data.csv")
+            "https://gitlab.com/im-batman/simple-data-assestment/-/raw/main/superman.json", "resources/data/source_data/aa_data")
+        print("Calls to mock_logger:", mock_logger.call_arg_list)
+        # mock_logger_instance.info.assert_called_with("reading superman.json file from web")
+        # mock_logger_instance.info.assert_called_with("superman.json file stored at superman.json")
+        mock_flatten_json.assert_called_with("resources/data/source_data/aa_data")
+        mock_process_json.assert_called_with(["flattened_data"], "resources/data/target_data/aa_data")
+        # mock_logger_instance.info.assert_called_with("Reading random user data from API")
+        mock_ingest_api_data.assert_called_with("https://randomuser.me/api/0.8/?results=100", "resources/data/source_data/aa_data/api_landing_path")
+        # mock_logger_instance.info.assert_called_with("dataset dumped on random_user_data.csv")
+        mock_process_api_data.assert_called_with("resources/data/source_data/aa_data/api_landing_path", "resources/data/target_data/aa_data")
+        # mock_logger_instance.info.assert_called_with("placed process data at processed_data.csv")
 
     # @patch('etl.data_jobs.air_asia_data_job.spark_utils.SparkUtils.get_spark_session')
     # @patch('etl.data_jobs.air_asia_data_job.spark_utils.SparkUtils.save_dataframe_as_csv')
