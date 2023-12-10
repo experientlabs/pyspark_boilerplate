@@ -1,7 +1,14 @@
 import os
 import unittest
 from unittest.mock import patch, Mock
+
+from pyspark import SparkContext
+from pyspark.sql import SparkSession
+from pyspark.sql.functions import split, count
+
 from etl.data_jobs.air_asia_data_job import AirADataJob
+from etl.utils.column_constants import Columns
+
 
 class TestAirADataJob(unittest.TestCase):
 
@@ -41,6 +48,7 @@ class TestAirADataJob(unittest.TestCase):
         print("Calls to mock_flatten_json:", mock_flatten_json.call_args_list)
         print("Calls to mock_logger:", mock_logger.return_value)
         print("Calls to mock_logger:", mock_logger.call_arg_list)
+        print("Calls to mock_logger:", mock_logger.instance.info.call_arg_list)
         print("\n\n")
 
         # Assert
@@ -57,35 +65,126 @@ class TestAirADataJob(unittest.TestCase):
         # mock_logger_instance.info.assert_called_with("dataset dumped on random_user_data.csv")
         mock_process_api_data.assert_called_with("resources/data/source_data/aa_data/api_landing_path", "resources/data/target_data/aa_data")
         # mock_logger_instance.info.assert_called_with("placed process data at processed_data.csv")
+        # Assert total call count
+        total_call_count = (mock_logger.call_count + mock_read_json_from_web.call_count + mock_flatten_json.call_count +
+                            mock_process_json.call_count + mock_ingest_api_data.call_count +
+                            mock_process_api_data.call_count)
+        self.assertEqual(total_call_count, 6)
 
-    # @patch('etl.data_jobs.air_asia_data_job.spark_utils.SparkUtils.get_spark_session')
-    # @patch('etl.data_jobs.air_asia_data_job.spark_utils.SparkUtils.save_dataframe_as_csv')
-    # def test_process_api_data(self, mock_get_spark_session, mock_save_dataframe_as_csv):
-    #     # Mocking dependencies and setting up mocks
-    #     mock_spark_session = Mock()
-    #     mock_get_spark_session.return_value = mock_spark_session
-    #     mock_df = Mock()
-    #     mock_df1 = Mock()
-    #     mock_df2 = Mock()
-    #     mock_spark_session.read.format.return_value.option.return_value.load.return_value = mock_df
-    #     mock_df.select.return_value = mock_df1
-    #     mock_df1.groupby.return_value.agg.return_value = mock_df2
-    #
-    #     # Creating an instance of AirADataJob
-    #     air_data_job = AirADataJob("air_asia_data_job")
-    #
-    #     # Calling the process_api_data method
-    #     air_data_job.process_api_data("input_path", "output_path")
-    #
-    #     # Asserting that the mocked methods were called as expected
-    #     mock_spark_session.read.format.assert_called_with("csv")
-    #     mock_df.select.assert_called_with(
-    #         'GENDER',
-    #         split('email', '@')[1].alias('email_provider'),
-    #         'username'
-    #     )
-    #     mock_df1.groupby.assert_called_with('gender', 'email_provider')
-    #     mock_df2.coalesce(1).write.format.assert_called_with("csv")
-    #     mock_save_dataframe_as_csv.assert_called_with(mock_df2, 'output_path/assessment_2_total_count')
+    @patch('etl.data_jobs.air_asia_data_job.spark_utils.SparkUtils.get_spark_session')
+    @patch('etl.data_jobs.air_asia_data_job.spark_utils.SparkUtils.write_data')
+    def test_reads_csv_data_from_input_path(self, mock_write_data, mock_get_spark_session):
+        # Mock the necessary dependencies
+        # mock_spark_session = Mock()
+        # mock_spark_context = Mock()
+        mock_spark_session = Mock(spec=SparkSession)
+        mock_spark_context = Mock(spec=SparkContext)
+        mock_get_spark_session.return_value = mock_spark_session
+        mock_write_data.return_value = None
+        mock_read = Mock()
+        mock_option = Mock()
+        mock_load = Mock()
+        mock_spark_session.return_value = mock_read
+        mock_read.format.return_value = mock_option
+        mock_option.option.return_value = mock_load
+        mock_load.load.return_value = Mock()
+        mock_spark_session.sparkContext = mock_spark_context
 
+
+        # Creating an instance of AirADataJob
+        air_data_job = AirADataJob("air_asia_data_job")
+
+        air_data_job.spark = mock_spark_session
+        # air_data_job.spark._jsc = mock_spark_context
+
+        # Define the input and output paths
+        input_path = Mock() # "path/to/input_file.csv"
+        output_path = Mock() # "path/to/output_folder"
+
+        print("Before calling process_api_data")
+        # Calling the process_api_data method
+        air_data_job.process_api_data(input_path, output_path)
+
+        print("After calling process_api_data")
+
+        # Assertions
+        # mock_get_spark_session.assert_called_once()  # Ensure get_spark_session is called
+        # mock_spark_session.read.format().option().load.assert_called_once_with(
+        #     input_path)  # Adjust as per your actual code
+        # mock_spark_session.select().groupby().agg().coalesce().write.format().save.assert_called_once_with(
+        #     output_path)  # Adjust as per your actual code
+        # mock_write_data.assert_called_once()  # Ensure write_data is called
+
+        # --
+        # mock_get_spark_session.assert_called_once()  # Ensure get_spark_session is called
+        # mock_read.format.assert_called_once_with("csv")
+        # mock_option.option.assert_called_once_with("header", "true")
+        # mock_load.load.assert_called_once_with(input_path)  # Adjust based on your actual code
+        # mock_write_data.assert_called_once()  # Ensure write_data is called
+
+
+
+        # Assert that the necessary methods were called with the correct arguments
+        # mock_read.format.assert_called_once_with("csv")
+        # mock_option.assert_called_once_with("header", "true")
+        # mock_load.assert_called_once_with(input_path)
+        # mock_select.assert_called_once_with(
+        #     Columns.GENDER,
+        #     split("email", "@", -1)[1].alias("email_provider"),
+        #     "username",
+        # )
+        # mock_groupby.assert_called_once_with("gender", "email_provider")
+        # mock_agg.assert_called_once_with(count("username"))
+        # mock_coalesce.assert_called_once_with(1)
+        # mock_write.format.assert_called_once_with("csv")
+        # mock_write.mode.assert_called_once_with("overwrite")
+        # mock_write.option.assert_called_once_with("header", True)
+        # mock_write.option.assert_called_once_with("sep", ",")
+        # mock_write.save.assert_called_once_with(output_path + "/assessment_2_total_count")
+
+
+
+
+    @patch('etl.data_jobs.air_asia_data_job.spark_utils.SparkUtils.get_spark_session')
+    @patch('etl.data_jobs.air_asia_data_job.spark_utils.SparkUtils.write_data')
+    def test_process_api_data(self, mock_get_spark_session, mock_write_data):
+        # Mocking dependencies and setting up mocks
+        mock_spark_session = Mock()
+        mock_get_spark_session.return_value = mock_spark_session
+
+
+        mock_df = Mock()
+        mock_df1 = Mock()
+        mock_df2 = Mock()
+        mock_spark_session.read.format.return_value.option.return_value.load.return_value = mock_df
+        mock_df.select.return_value = mock_df1
+        mock_df1.groupby.return_value.agg.return_value = mock_df2
+
+        # Creating an instance of AirADataJob
+        air_data_job = AirADataJob("air_asia_data_job")
+
+        # Define the input and output paths
+
+        # Calling the process_api_data method
+        air_data_job.process_api_data("input_path", "output_path")
+
+        # Asserting that the mocked methods were called as expected
+        # mock_spark_session.read.format.assert_called_with("csv")
+        # mock_df.select.assert_called_with(
+        #     'GENDER',
+        #     split('email', '@')[1].alias('email_provider'),
+        #     'username'
+        # )
+        # mock_df1.groupby.assert_called_with('gender', 'email_provider')
+        # mock_df2.coalesce(1).write.format.assert_called_with("csv")
+        # mock_save_dataframe_as_csv.assert_called_with(mock_df2, 'output_path/assessment_2_total_count')
+        #
+        mock_groupby.assert_called_once_with("gender", "email_provider")
+        mock_agg.assert_called_once_with(count("username"))
+        mock_coalesce.assert_called_once_with(1)
+        mock_write.format.assert_called_once_with("csv")
+        mock_write.mode.assert_called_once_with("overwrite")
+        mock_write.option.assert_called_once_with("header", True)
+        mock_write.option.assert_called_once_with("sep", ",")
+        mock_write.save.assert_called_once_with(output_path + "/assessment_2_total_count")
 
