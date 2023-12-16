@@ -6,6 +6,7 @@ from pyspark import SparkContext
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import split, count
 
+from etl.config.config_utils import ConfigUtil
 from etl.data_jobs.air_asia_data_job import AirADataJob
 from etl.utils.column_constants import Columns
 
@@ -34,6 +35,11 @@ class TestAirADataJob(unittest.TestCase):
                                                             "superman_final.json", "processed_data.csv",
                                                             "https://gitlab.com/im-batman/simple-data-assestment/-/raw/main/superman.json",
                                                             "https://randomuser.me/api/0.8/?results=100"]
+
+        config_util = ConfigUtil()
+        input_path = config_util.get_config("IO_CONFIG", "INPUT_DATA_PATH")
+        print(input_path)
+
         mock_read_json_from_web.side_effect = [None, None]
         mock_flatten_json.return_value = ["flattened_data"]
         mock_process_json.return_value = None

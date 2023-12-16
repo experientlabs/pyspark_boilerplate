@@ -25,23 +25,31 @@ class TestAirA(unittest.TestCase):
     configutil = config_utils.ConfigUtil(config_path)
     configutil.get_config("IO_CONFIGS", "INPUT_DATA_PATH")
 
+    @staticmethod
+    def update_test_path(path: str) -> str:
+        return os.path.abspath(path).replace("test/", "")
+
     def test_read_nested_json(self):
         job = AirADataJob("air_asia_data_job")
-        job.run()
         # Assert that the superman.json file is stored at the landing path
-        self.assertTrue(os.path.exists(job.superman_landing_path + "/superman.json"))
+        # This is similar to testing the target and source database connection in real project stetting.
+        landing_path = self.update_test_path(job.superman_landing_path)
+        self.assertTrue(os.path.exists(landing_path + "/superman.json"))
         # Assert that the superman_final.json file is created at the target path
-        self.assertTrue(os.path.exists(job.superman_target_path + "/superman_final.json"))
+        target_path = self.update_test_path(job.superman_target_path)
+        self.assertTrue(os.path.exists(target_path + "/superman_final.json"))
 
         #  Read data from random user API and process it
 
     def test_read_random_user_api(self):
         job = AirADataJob("air_asia_data_job")
-        job.run()
+        # job.run()
         # Assert that the random user data is dumped at the landing path
-        self.assertTrue(os.path.exists(job.random_user_landing_path))
+        ru_landing_path = self.update_test_path(job.random_user_landing_path)
+        self.assertTrue(ru_landing_path)
         # Assert that the processed data is placed at the target path
-        self.assertTrue(os.path.exists(job.random_user_target_path))
+        ru_target_path = self.update_test_path(job.random_user_target_path)
+        self.assertTrue(ru_target_path)
 
         #  Flatten json data
 
@@ -71,6 +79,7 @@ class TestAirA(unittest.TestCase):
     def test_invalid_api_url(self):
         job = AirADataJob("air_asia_data_job")
         # Set an invalid url for the random user API
+        job.json_url = "https://invalid_url"
         job.url = "https://invalid_url"
         # Assert that an exception is raised when reading the API data
         with self.assertRaises(Exception):

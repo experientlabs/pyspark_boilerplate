@@ -24,19 +24,11 @@ class AirADataJob(Job):
         self.aa_helper = AirAHelper(self.spark)
         self.logger = Logger(job_name).get_logger()
 
-
     configutil = config_utils.ConfigUtil()
-    superman_landing_path = configutil.get_config(
-        "IO_CONFIGS", "AA_LANDING_PATH"
-    )
-    random_user_landing_path = configutil.get_config(
-        "IO_CONFIGS", "AA_API_LANDING_PATH"
-    )
-
+    superman_landing_path = configutil.get_config("IO_CONFIGS", "AA_LANDING_PATH")
+    random_user_landing_path = configutil.get_config("IO_CONFIGS", "AA_API_LANDING_PATH")
     superman_target_path = configutil.get_config("IO_CONFIGS", "AA_TARGET_PATH")
-    random_user_target_path = configutil.get_config(
-        "IO_CONFIGS", "AA_TARGET_PATH"
-    )
+    random_user_target_path = configutil.get_config("IO_CONFIGS", "AA_TARGET_PATH")
 
     url = configutil.get_config("IO_CONFIGS", "AA_RANDOM_USER_URL")
     # "https://randomuser.me/api/0.8/?results=100"
