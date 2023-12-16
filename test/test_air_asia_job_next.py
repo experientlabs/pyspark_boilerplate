@@ -78,7 +78,8 @@ class TestAirADataJob(unittest.TestCase):
     # @patch('etl.data_jobs.air_asia_data_job.spark_utils.SparkUtils.get_spark_session')
     # @patch('etl.data_jobs.air_asia_data_job.spark_utils.SparkUtils.write_data')
     # def test_reads_csv_data_from_input_path(self, mock_write_data, mock_get_spark_session,
-    #                                         mock_config_util, mock_logger):
+    #                                         # mock_config_util, mock_logger
+    #                                         ):
     #     # Mock the necessary dependencies
     #     # mock_spark_session = Mock()
     #     # mock_spark_context = Mock()
@@ -102,8 +103,8 @@ class TestAirADataJob(unittest.TestCase):
     #     # air_data_job.spark._jsc = mock_spark_context
     #
     #     # Define the input and output paths
-    #     input_path = Mock() # "path/to/input_file.csv"
-    #     output_path = Mock() # "path/to/output_folder"
+    #     input_path = air_data_job.random_user_landing_path
+    #     output_path = air_data_job.random_user_target_path
     #
     #     print("Before calling process_api_data")
     #     # Calling the process_api_data method

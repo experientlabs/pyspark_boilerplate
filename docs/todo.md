@@ -16,6 +16,8 @@
 - [Decorators](https://towardsdatascience.com/python-decorators-for-data-science-6913f717669a)
 - Monads
 - [Use Dataclass](https://zetcode.com/python/dataclass/)
+- Zepplin
+- Bridging Spark SQL with JDBC
 
 
 # Low leve TODO
