@@ -2,7 +2,7 @@
 
 <img src="resources/images/pyspark_boilerplate.png" alt="drawing" style="height:419px; width:1072px;"/>
 
-![ci status](https://github.com/experientlabs/pyspark_boilerplate/workflows/tests.yml/badge.svg)
+![ci status](https://github.com/experientlabs/pyspark_boilerplate/actions/workflows/tests.yml/badge.svg)
 
 ## Preface: 
 This is a sample pyspark project designed to work as a boilerplate application. This application is written by following 
