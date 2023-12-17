@@ -70,7 +70,7 @@ class AirAHelper:
 
         except Exception as exp:
             self.logger.error(f"error in reading api data {str(exp)}")
-            exit(1)
+            # exit(1)
             raise
         return final_df
 

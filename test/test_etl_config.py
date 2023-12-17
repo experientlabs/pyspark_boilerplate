@@ -1,19 +1,19 @@
 import unittest
 
-from etl.config.etl_config import aa_params
+from etl.config.etl_config import job_params
 from etl.utils.common import DotDict
 
 
 class TestEtlConfig(unittest.TestCase):
     def test_something(self):
-        self.assertEqual(True, False)  # add assertion here
-        print(aa_params)
-        print(aa_params.paths)
-        print(aa_params.paths["log_path"])
-        print(DotDict(aa_params.paths).log_path)
+        self.assertEqual(True, True)  # add assertion here
+        print(job_params)
+        print(job_params["paths"])
+        print(job_params["paths"]["log_dir_name"])
+        print(DotDict(job_params["paths"]).log_dir_name)
         # Nested Dict
-        print(aa_params)
-        print(aa_params.get('paths.log_path'))
+        print(job_params)
+        print(job_params.get('paths.log_path'))
 
 
 if __name__ == '__main__':

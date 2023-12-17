@@ -12,7 +12,7 @@ import threading
 from datetime import datetime
 
 from project_root_dir import project_root_dir
-from etl.config.etl_config import air_asia_data_job
+from etl.config.etl_config import job_params
 from etl.utils.common import DotDict
 
 
@@ -48,7 +48,7 @@ class Logger(SingletonDoubleChecked):
             "[%(levelname)s] - %(asctime)-15s (%(relativepath)s:%(lineno)d): %(message)s",
             datefmt="%m/%d/%Y %I:%M:%S %p",
         )
-        log_dir = DotDict(air_asia_data_job).paths["log_dir_name"]
+        log_dir = DotDict(job_params).paths["log_dir_name"]
         log_path = project_root_dir + log_dir
 
         self.LOG_DIRECTORY = os.path.join(
