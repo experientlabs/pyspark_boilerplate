@@ -43,7 +43,7 @@ jobs:
 
       - name: running unittest with coverage report
         if: contains(github.event.comment.body, 'e2etest!')
-        run: python -m coverage run -m unittest discover -s test -p "test_" && python -m coverage report && 
+        run: python -m coverage run -m unittest discover -s test && python -m coverage report && 
               python -m coverage html
 
 
