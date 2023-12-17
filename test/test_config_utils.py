@@ -25,8 +25,5 @@ class TestConfigUtils(unittest.TestCase):
         random_user_landing_path = self.configutil.get_config(
             "IO_CONFIGS", "AA_API_LANDING_PATH"
         )
-        assert superman_landing_path == "resources/data/source_data/aa_data"
-        assert (
-            random_user_landing_path
-            == "resources/data/source_data/aa_data/api_landing_path"
-        )
+        assert superman_landing_path == project_root_dir + "/resources/data/source_data/aa_data"
+        assert (random_user_landing_path == project_root_dir + "/resources/data/source_data/aa_data/api_landing_path")

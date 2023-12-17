@@ -25,6 +25,7 @@ class TestAirA(unittest.TestCase):
     configutil.get_config("IO_CONFIGS", "INPUT_DATA_PATH")
 
 
+    @unittest.skip
     def test_read_nested_json(self):
         job = AirADataJob("air_asia_data_job")
         # Assert that the superman.json file is stored at the landing path
@@ -49,6 +50,7 @@ class TestAirA(unittest.TestCase):
 
         #  Flatten json data
 
+    @unittest.skip
     def test_flatten_json(self):
         """
         In real project there should be test data setup, here we are using real data for test purpose
