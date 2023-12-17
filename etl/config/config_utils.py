@@ -33,7 +33,7 @@ class ConfigUtil:
             config.read(self.cfg_path)
             if config_name.__contains__("URL"):
                 return config.get(section, config_name)
-            return config.get(section, config_name)
+            return project_root_dir + "/" + config.get(section, config_name)
         except IOError as exp:
             self.logger.error(f"error reading config file {str(exp)}")
 
@@ -41,9 +41,9 @@ class ConfigUtil:
 # if __name__ == '__main__':
 #     path = project_root_dir
 #     print(path)
-#     configutil = ConfigUtil()
-#     landing_path = configutil.get_config("IO_CONFIGS", "AA_LANDING_PATH")
-#     print(landing_path)
+    # configutil = ConfigUtil()
+    # landing_path = configutil.get_config("IO_CONFIGS", "AA_LANDING_PATH")
+    # print(landing_path)
 
 
 

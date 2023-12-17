@@ -58,14 +58,14 @@ class AirADataJob(Job):
                 self.url, self.random_user_landing_path
             )
             self.logger.info(
-                f"dataset dumped on {self.random_user_landing_path}"
+                f"dataset dumped on {os.path.abspath(self.random_user_landing_path)}"
             )
 
             self.process_api_data(
                 self.random_user_landing_path, self.random_user_target_path
             )
             self.logger.info(
-                f"placed process data at {self.random_user_target_path}"
+                f"placed processed data at {os.path.abspath(self.random_user_target_path)}"
             )
 
         except Exception as exp:
@@ -136,4 +136,4 @@ class AirADataJob(Job):
 
 # if __name__ == "__main__":
 #     air_data_job: AirADataJob = AirADataJob("air_asia_data_job")
-    # air_data_job.run()
+#     air_data_job.run()
