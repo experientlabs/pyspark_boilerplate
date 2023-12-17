@@ -69,9 +69,7 @@ class BMIDataJob(Job):
         :param df: dataframe with BMI value and their respective BMI categories
         :return: Count of records of people with BMI category as 'Overweight'
         """
-        self.logger.info(
-            f"Applying filter to the dataframe to fetch only Overweight records"
-        )
+        self.logger.info(f"Applying filter to the dataframe to fetch only Overweight records")
         return df.filter(col("BMI Category") == "Overweight").count()
 
     def run(self):
@@ -84,12 +82,9 @@ class BMIDataJob(Job):
             self.logger.info(
                 f"Created dataframe: {input_df} from input json file"
             )
-            input_df.show()
 
             bmi_df = self.calculate_bmi(input_df)
-            bmi_df.show()
             self.logger.info("Calculated BMI Based on predefined rule")
-
 
             bmi_category_df = self.get_bmi_category(bmi_df)
             self.logger.info(

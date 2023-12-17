@@ -5,8 +5,6 @@
 # File:             config_utils.py
 # -----------------------------------------------------------------------
 import configparser
-import os
-
 from project_root_dir import project_root_dir
 from etl.utils.logging_utils import Logger
 
@@ -36,15 +34,3 @@ class ConfigUtil:
             return project_root_dir + "/" + config.get(section, config_name)
         except IOError as exp:
             self.logger.error(f"error reading config file {str(exp)}")
-
-
-# if __name__ == '__main__':
-#     path = project_root_dir
-#     print(path)
-    # configutil = ConfigUtil()
-    # landing_path = configutil.get_config("IO_CONFIGS", "AA_LANDING_PATH")
-    # print(landing_path)
-
-
-
-
