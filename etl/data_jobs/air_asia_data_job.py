@@ -10,7 +10,7 @@ import re
 from pyspark.sql.functions import split, count
 
 from etl.utils.job import Job
-from etl.config import etl_config, config_utils
+from etl.config import config_utils
 from etl.data_jobs.air_asia_helper import AirAHelper
 from etl.utils import spark_utils
 from etl.utils.column_constants import Columns

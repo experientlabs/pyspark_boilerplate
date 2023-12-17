@@ -101,7 +101,7 @@ class Logger(SingletonDoubleChecked):
     def __get_old_logs(self):
         logs = [name for name in self.__get_file_names()]
         logs.sort(reverse=True)
-        return logs[self.LOGS_COUNT :]
+        return logs[self.LOGS_COUNT:]
 
     def __get_file_names(self):
         return [

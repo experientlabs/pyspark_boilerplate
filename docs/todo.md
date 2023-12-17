@@ -8,6 +8,11 @@ Adding Tests, Run tests using command line and generate coverage report
 Generate documentation
 Complete CI tests.  
 
+# Why setup.cfg? 
+If you are using a setup.cfg file for your project configuration, you can add the flake8 section with the max-line-length option:
+Setup.cfg supports various settings.
+
+
 
 # High level TODO
 - Add Architecture Diagram.

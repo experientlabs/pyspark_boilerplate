@@ -69,9 +69,7 @@ class BMIDataJob(Job):
         :param df: dataframe with BMI value and their respective BMI categories
         :return: Count of records of people with BMI category as 'Overweight'
         """
-        self.logger.info(
-            f"Applying filter to the dataframe to fetch only Overweight records"
-        )
+        self.logger.info(f"Applying filter to the dataframe to fetch only Overweight records")
         return df.filter(col("BMI Category") == "Overweight").count()
 
     def run(self):

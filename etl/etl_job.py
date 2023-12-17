@@ -39,8 +39,7 @@ class App:
             )
         except Exception as ex:
             self.logger.info(
-                str(datetime.datetime.now())
-                + "________Abruptly Exited__________"
+                str(datetime.datetime.now()) + "________Abruptly Exited__________"
             )
             raise Exception(
                 f"Execution of job: {job_name} failed with msg {ex}"

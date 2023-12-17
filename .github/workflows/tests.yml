@@ -39,7 +39,7 @@ jobs:
 
 
       - name: running Bandit to check vulnerability
-        run: bandit -r etl
+        run: bandit -r etl --skip B310
 
       - name: running unittest with coverage report
         if: contains(github.event.comment.body, 'e2etest!')

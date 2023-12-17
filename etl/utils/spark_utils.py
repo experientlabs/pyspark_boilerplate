@@ -1,3 +1,4 @@
+import os.path
 import sys
 
 from pyspark.sql import DataFrame
@@ -79,5 +80,5 @@ class SparkUtils:
         df.write.format("json").mode("overwrite").option(
             "parquet.bloom.filter.enabled#favorite_color", "true"
         ).save(folder_path)
-        self.logger.info(f"Printing dataframe after writing to disk")
+        self.logger.info(f"Printing dataframe after writing to disk at path {os.path.abspath(folder_path)}")
         df.show()
