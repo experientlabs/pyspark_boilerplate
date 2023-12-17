@@ -62,7 +62,6 @@ class TestAirA(unittest.TestCase):
 
         #  Invalid url for json file
 
-    @unittest.skip
     def test_invalid_json_url(self):
         job = AirADataJob("air_asia_data_job")
         # Set an invalid url for the json file
@@ -73,7 +72,6 @@ class TestAirA(unittest.TestCase):
 
         #  Invalid url for random user API
 
-    @unittest.skip
     def test_invalid_api_url(self):
         job = AirADataJob("air_asia_data_job")
         # Set an invalid url for the random user API
@@ -85,7 +83,6 @@ class TestAirA(unittest.TestCase):
 
         #  Invalid path for landing and target directories
 
-    @unittest.skip
     def test_invalid_directory_path(self):
         job = AirADataJob("air_asia_data_job")
         # Set an invalid path for the landing and target directories
