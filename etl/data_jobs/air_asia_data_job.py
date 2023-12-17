@@ -41,8 +41,6 @@ class AirADataJob(Job):
 
     def run(self):
         try:
-            config = getattr(etl_config, self.job_name)
-
             # Read the nested json file from url and process it.
             self.logger.info(f"reading superman.json file from web")
             self.aa_helper.read_json_from_web(

@@ -21,14 +21,9 @@ class TestAirA(unittest.TestCase):
 
     utils = spark_utils.SparkUtils()
     spark = utils.get_spark_session("air_asia_data_job")
-
-    config_path = "../etl/config/pipeline.cfg"
-    configutil = config_utils.ConfigUtil(config_path)
+    configutil = config_utils.ConfigUtil()
     configutil.get_config("IO_CONFIGS", "INPUT_DATA_PATH")
 
-    # @staticmethod
-    # def update_test_path(path: str) -> str:
-    #     return os.path.abspath(path).replace("test/", "")
 
     def test_read_nested_json(self):
         job = AirADataJob("air_asia_data_job")
@@ -46,10 +41,10 @@ class TestAirA(unittest.TestCase):
         job = AirADataJob("air_asia_data_job")
         # job.run()
         # Assert that the random user data is dumped at the landing path
-        ru_landing_path = self.update_test_path(job.random_user_landing_path)
+        ru_landing_path = update_test_path(job.random_user_landing_path)
         self.assertTrue(ru_landing_path)
         # Assert that the processed data is placed at the target path
-        ru_target_path = self.update_test_path(job.random_user_target_path)
+        ru_target_path = update_test_path(job.random_user_target_path)
         self.assertTrue(ru_target_path)
 
         #  Flatten json data

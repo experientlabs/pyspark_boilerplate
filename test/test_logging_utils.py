@@ -7,17 +7,15 @@
 import os
 import unittest
 from etl.utils.logging_utils import Logger
+from project_root_dir import project_root_dir
 
 
 class TestLoggingUtils(unittest.TestCase):
     def test_log_path(self):
         logger = Logger("test")
         log_path = logger.LOG_DIRECTORY
-        print(log_path)
         absolute_path = os.path.abspath(log_path)
-        print(absolute_path)
-        rel_path = os.path.relpath(log_path)
-        assert rel_path == "../logs"
+        assert absolute_path == project_root_dir+ "/logs"
 
     def test_get_old_logs(self):
         """
