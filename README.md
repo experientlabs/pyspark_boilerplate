@@ -61,11 +61,30 @@ make package
 spark-submit --py-files target/spark_etl-0.0.1.zip etl/etl_job.py --job-name air_asia_data_job
 ```
 
+# Unit Test:
+```commandline
+python -m coverage run -m unittest discover -s test -p "test*.py" 
+    && python -m coverage report 
+    && python -m coverage html -d resources/coverage_report
+
+```
+Code Coverage Stats:
+
+![coverage report](resources/images/test_coverage.png)
+
+Code Coverage Display:
+
+![code coverage](resources/images/code_coverage.png)
+
 
 # Versioning 
+The version of this app is controlled by VERSION file in root directory and invoke based tasks.py
+Everytime there is a new release it will call the inc_patch, inc_major, inc_minor functions based 
+on the version policy. 
+This part is still in development and will be functional soon. 
 
 
-
+# --------------------------------------------------------------------
 ```	
 spark-submit \
 	--jars jars/any-jar_0.1-0.1.1.jar \

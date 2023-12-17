@@ -2,12 +2,13 @@
 # ------------------------------------------------------------------------
 # Created By  :     'Sanjeet Shukla'
 # Created Date:     27/01/23 12:33 am
-# File:             test_bmi_data_job.py
+# File:             test_bmi_data_job_mocks.py
 # -----------------------------------------------------------------------
 import unittest
 
 from etl.utils import spark_utils
 from etl.config import config_utils
+from project_root_dir import project_root_dir
 
 
 class TestBMIJob(unittest.TestCase):
@@ -19,7 +20,7 @@ class TestBMIJob(unittest.TestCase):
     utils = spark_utils.SparkUtils()
     spark = utils.get_spark_session("bmi_data_job")
 
-    config_path = "../etl/config/pipeline.cfg"
+    config_path = project_root_dir + "/etl/config/pipeline.cfg"
     configutil = config_utils.ConfigUtil(config_path)
     configutil.get_config("IO_CONFIGS", "INPUT_DATA_PATH")
 

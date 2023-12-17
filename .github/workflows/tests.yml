@@ -1,20 +1,24 @@
 name: Build And Test
-# Build and test on Python[3.7, 3.8, 3.9] - with coverage, checking coding standard and common security issues
+# Build and test on Python[3.8, 3.9, 3.10] - with coverage, checking coding standard and common security issues
 
 on:
-  workflow_dispatch:
-    branches: [main]
+  issue_comment:
+    types: [created, edited, deleted]
 #  push:
 #    branches: [main]
 #  pull_request:
 #    branches: [main]
 
+permissions:
+  contents: read
+
 jobs:
   build:
+    if: ${{ github.event.issue.pull_request }}  #To check if the comment is on PR or issue.
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: [3.7, 3.8, 3.9]
+        python-version: [3.8, 3.9, 3.10]
 
     steps:
       - uses: actions/checkout@v3
@@ -38,7 +42,8 @@ jobs:
         run: bandit -r etl
 
       - name: running unittest with coverage report
-        run: python -m coverage run -m unittest discover -s test -p "*_test.py" && python -m coverage report && 
+        if: contains(github.event.comment.body, 'e2etest!')
+        run: python -m coverage run -m unittest discover -s test -p "test_" && python -m coverage report && 
               python -m coverage html
 
 

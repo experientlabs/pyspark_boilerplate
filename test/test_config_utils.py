@@ -7,10 +7,11 @@
 import os
 import unittest
 from etl.config import config_utils
+from project_root_dir import project_root_dir
 
 
 class TestConfigUtils(unittest.TestCase):
-    config_path = "../etl/config/pipeline.cfg"
+    config_path = project_root_dir + "/etl/config/pipeline.cfg"
     configutil = config_utils.ConfigUtil(config_path)
     configutil.get_config("IO_CONFIGS", "INPUT_DATA_PATH")
 
@@ -24,9 +25,8 @@ class TestConfigUtils(unittest.TestCase):
         random_user_landing_path = self.configutil.get_config(
             "IO_CONFIGS", "AA_API_LANDING_PATH"
         )
-        print(os.path.abspath(superman_landing_path))
-        assert superman_landing_path == "../../data/source_data/aa_data"
+        assert superman_landing_path == "resources/data/source_data/aa_data"
         assert (
             random_user_landing_path
-            == "../../data/source_data/aa_data/api_landing_path"
+            == "resources/data/source_data/aa_data/api_landing_path"
         )

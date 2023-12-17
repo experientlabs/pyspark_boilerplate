@@ -25,9 +25,7 @@ class HappinessIndex(Job):
     configutil = config_utils.ConfigUtil()
     utils = spark_utils.SparkUtils()
     happiness_data = configutil.get_config("IO_CONFIGS", "HAPPINESS_INDEX_DATA")
-    happiness_data_target = configutil.get_config(
-        "IO_CONFIGS", "HAPPINESS_INDEX_TARGET"
-    )
+    happiness_data_target = configutil.get_config("IO_CONFIGS", "HAPPINESS_INDEX_TARGET")
 
     def run(self):
         df_csv = self.utils.read_data(

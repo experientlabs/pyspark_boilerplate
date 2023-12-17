@@ -22,20 +22,13 @@ class AirADataJob(Job):
         self.job_name = job_name
         self.spark = spark_utils.SparkUtils().get_spark_session("aa_data_job")
         self.aa_helper = AirAHelper(self.spark)
+        self.logger = Logger(job_name).get_logger()
 
-    logger = Logger(__name__).get_logger()
     configutil = config_utils.ConfigUtil()
-    superman_landing_path = configutil.get_config(
-        "IO_CONFIGS", "AA_LANDING_PATH"
-    )
-    random_user_landing_path = configutil.get_config(
-        "IO_CONFIGS", "AA_API_LANDING_PATH"
-    )
-
+    superman_landing_path = configutil.get_config("IO_CONFIGS", "AA_LANDING_PATH")
+    random_user_landing_path = configutil.get_config("IO_CONFIGS", "AA_API_LANDING_PATH")
     superman_target_path = configutil.get_config("IO_CONFIGS", "AA_TARGET_PATH")
-    random_user_target_path = configutil.get_config(
-        "IO_CONFIGS", "AA_TARGET_PATH"
-    )
+    random_user_target_path = configutil.get_config("IO_CONFIGS", "AA_TARGET_PATH")
 
     url = configutil.get_config("IO_CONFIGS", "AA_RANDOM_USER_URL")
     # "https://randomuser.me/api/0.8/?results=100"
@@ -48,8 +41,6 @@ class AirADataJob(Job):
 
     def run(self):
         try:
-            config = getattr(etl_config, self.job_name)
-
             # Read the nested json file from url and process it.
             self.logger.info(f"reading superman.json file from web")
             self.aa_helper.read_json_from_web(
@@ -131,7 +122,7 @@ class AirADataJob(Job):
             )
             df1 = df.select(
                 Columns.GENDER,
-                split("email", "@")[1].alias("email_provider"),
+                split("email", "@", -1)[1].alias("email_provider"),
                 "username",
             )
             df2 = df1.groupby("gender", "email_provider").agg(count("username"))
@@ -144,5 +135,5 @@ class AirADataJob(Job):
 
 
 # if __name__ == "__main__":
-    # air_data_job: AirADataJob = AirADataJob("air_asia_data_job")
-    # air_data_job.run()
+#     air_data_job: AirADataJob = AirADataJob("air_asia_data_job")
+#     air_data_job.run()
