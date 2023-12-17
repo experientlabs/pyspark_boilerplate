@@ -4,22 +4,21 @@
 # Created Date:     16/01/23 1:07 am
 # File:             test_happiness_index_data_job.py
 # -----------------------------------------------------------------------
-
+import os.path
 import unittest
 
 from pyspark.sql.functions import col
 from pyspark.sql.types import StructType, StructField, IntegerType
+
+from etl.config.config_utils import ConfigUtil
 from etl.utils import spark_utils, table_schema
 
 
 class TestHappinessJob(unittest.TestCase):
     utils = spark_utils.SparkUtils()
     spark = utils.get_spark_session("happiness_index_job")
-
-    # Using hardcoded file path as config directory is inside etl and relative path of data is different.
-    # TODO: To move the config directory outside etl.
-
-    file_path = "../resources/data/source_data/happiness_index_data"
+    config_util = ConfigUtil()
+    file_path = config_util.get_config("IO_CONFIGS", "HAPPINESS_INDEX_DATA")
     file_format = "csv"
     csv_schema = table_schema.happiness_data_schema
 
@@ -29,22 +28,29 @@ class TestHappinessJob(unittest.TestCase):
         file_format: str = file_format,
         schema: StructType = csv_schema,
     ):
-        actual_df = self.utils.read_data(self.spark, path, file_format, schema)
-        expected_df = self.spark.read.csv(path, header=True)
+        updated_path = os.path.abspath(path).replace("test/", "")
+        actual_df = self.utils.read_data(self.spark, updated_path, file_format, schema)
+        expected_df = self.spark.read.csv(updated_path, header=True)
         assert actual_df.count() == expected_df.count()
 
     def test_csv_data_schema(
         self, schema=csv_schema, path=file_path, file_format=file_format
     ):
-        actual_df = self.utils.read_data(self.spark, path, file_format, schema)
+        updated_path = os.path.abspath(path).replace("test/", "")
+        actual_df = self.utils.read_data(self.spark, updated_path, file_format, schema)
         assert actual_df.schema == schema
 
     def test_compare_data_csv(
         self, path=file_path, file_format=file_format, schema=csv_schema
     ):
+        updated_path = os.path.abspath(path).replace("test/", "")
+        print("\n\n++++++++++++++++Printing Updated Path++++++++++++++++++++++++")
+        print(updated_path)
+        print("++++++++++++++++Printing Updated Path++++++++++++++++++++++++\n\n")
         actual_df = self.utils.read_data(
-            self.spark, path, file_format, schema
+            self.spark, updated_path, file_format, schema
         ).filter(col("Happiness Rank") <= 2)
+        actual_df.show()
         data = [
             (
                 "Switzerland",
@@ -76,11 +82,12 @@ class TestHappinessJob(unittest.TestCase):
             ),
         ]
         expected_df = self.spark.createDataFrame(data, schema)
+        expected_df.show()
         assert sorted(actual_df.collect()) == sorted(expected_df.collect())
 
     def test_dataframe(self):
         data1 = [(171, 76), (151, 96)]
-        data2 = [(172, 75), (95, 234)]
+        data2 = [(151, 96), (171, 76)]
         schema = StructType(
             [
                 StructField("a", IntegerType(), True),
@@ -88,7 +95,7 @@ class TestHappinessJob(unittest.TestCase):
             ]
         )
         df1 = self.spark.createDataFrame(data1, schema)
-        df2 = self.spark.createDataFrame(data1, schema)
+        df2 = self.spark.createDataFrame(data2, schema)
         assert sorted(df1.collect()) == sorted(df2.collect())
 
 

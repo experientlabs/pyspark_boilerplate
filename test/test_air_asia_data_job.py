@@ -11,6 +11,7 @@ from unittest.mock import Mock, patch
 from etl.data_jobs.air_asia_data_job import AirADataJob
 from etl.utils import spark_utils
 from etl.config import config_utils
+from test.utils_functions import update_test_path
 
 
 class TestAirA(unittest.TestCase):
@@ -25,18 +26,18 @@ class TestAirA(unittest.TestCase):
     configutil = config_utils.ConfigUtil(config_path)
     configutil.get_config("IO_CONFIGS", "INPUT_DATA_PATH")
 
-    @staticmethod
-    def update_test_path(path: str) -> str:
-        return os.path.abspath(path).replace("test/", "")
+    # @staticmethod
+    # def update_test_path(path: str) -> str:
+    #     return os.path.abspath(path).replace("test/", "")
 
     def test_read_nested_json(self):
         job = AirADataJob("air_asia_data_job")
         # Assert that the superman.json file is stored at the landing path
         # This is similar to testing the target and source database connection in real project stetting.
-        landing_path = self.update_test_path(job.superman_landing_path)
+        landing_path = update_test_path(job.superman_landing_path)
         self.assertTrue(os.path.exists(landing_path + "/superman.json"))
         # Assert that the superman_final.json file is created at the target path
-        target_path = self.update_test_path(job.superman_target_path)
+        target_path = update_test_path(job.superman_target_path)
         self.assertTrue(os.path.exists(target_path + "/superman_final.json"))
 
         #  Read data from random user API and process it

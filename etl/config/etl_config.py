@@ -1,6 +1,6 @@
 from etl.utils.common import DotDict, NestedDict
 
-air_asia_data_job = {
+job_params = {
     "paths": {
         "log_dir_name": "/logs/",
         "output_data_path": "../../data/target_data",

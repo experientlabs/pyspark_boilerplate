@@ -31,15 +31,20 @@ class TestAirADataJob(unittest.TestCase):
         mock_logger_instance = mock_logger.return_value.get_logger.return_value
         mock_logger.return_value.get_logger.side_effect = [mock_logger_instance, Mock()]
         mock_config_util_instance = mock_config_util.return_value
-        mock_config_util_instance.get_config.side_effect = ["resources/data/source_data/aa_data", "random_user_data.csv",
-                                                            "superman_final.json", "processed_data.csv",
-                                                            "https://gitlab.com/im-batman/simple-data-assestment/-/raw/main/superman.json",
-                                                            "https://randomuser.me/api/0.8/?results=100"]
 
         config_util = ConfigUtil()
-        input_path = config_util.get_config("IO_CONFIG", "INPUT_DATA_PATH")
-        print(input_path)
+        landing_path = config_util.get_config("IO_CONFIGS", "AA_LANDING_PATH")
+        target_path = config_util.get_config("IO_CONFIGS", "AA_TARGET_PATH")
+        api_landing_path = config_util.get_config("IO_CONFIGS", "AA_API_LANDING_PATH")
+        sm_url = config_util.get_config("IO_CONFIGS", "AA_SUPERMAN_JSON_URL")
+        ru_url = config_util.get_config("IO_CONFIGS", "AA_RANDOM_USER_URL")
+        ru_csv_file = config_util.get_config("FILE_NAMES", "RU_CSV")
+        sm_json_file = config_util.get_config("FILE_NAMES", "SM_JSON")
+        processed_csv = config_util.get_config("FILE_NAMES", "PR_CSV")
 
+        mock_config_util_instance.get_config.side_effect = [landing_path, ru_csv_file, sm_json_file,
+                                                            processed_csv,
+                                                            sm_url, ru_url]
         mock_read_json_from_web.side_effect = [None, None]
         mock_flatten_json.return_value = ["flattened_data"]
         mock_process_json.return_value = None
@@ -59,17 +64,16 @@ class TestAirADataJob(unittest.TestCase):
 
         # Assert
         mock_logger.assert_called_once_with(job_name)
-        mock_read_json_from_web.assert_called_with(
-            "https://gitlab.com/im-batman/simple-data-assestment/-/raw/main/superman.json", "resources/data/source_data/aa_data")
+        mock_read_json_from_web.assert_called_with(sm_url, landing_path)
         print("Calls to mock_logger:", mock_logger.call_arg_list)
         # mock_logger_instance.info.assert_called_with("reading superman.json file from web")
         # mock_logger_instance.info.assert_called_with("superman.json file stored at superman.json")
-        mock_flatten_json.assert_called_with("resources/data/source_data/aa_data")
-        mock_process_json.assert_called_with(["flattened_data"], "resources/data/target_data/aa_data")
+        mock_flatten_json.assert_called_with(landing_path)
+        mock_process_json.assert_called_with(["flattened_data"], target_path)
         # mock_logger_instance.info.assert_called_with("Reading random user data from API")
-        mock_ingest_api_data.assert_called_with("https://randomuser.me/api/0.8/?results=100", "resources/data/source_data/aa_data/api_landing_path")
+        mock_ingest_api_data.assert_called_with(ru_url, api_landing_path)
         # mock_logger_instance.info.assert_called_with("dataset dumped on random_user_data.csv")
-        mock_process_api_data.assert_called_with("resources/data/source_data/aa_data/api_landing_path", "resources/data/target_data/aa_data")
+        mock_process_api_data.assert_called_with(api_landing_path, target_path)
         # mock_logger_instance.info.assert_called_with("placed process data at processed_data.csv")
         # Assert total call count
         total_call_count = (mock_logger.call_count + mock_read_json_from_web.call_count + mock_flatten_json.call_count +
