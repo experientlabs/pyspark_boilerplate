@@ -9,4 +9,35 @@ Please check environment variables `PYSPARK_PYTHON` and `PYSPARK_DRIVER_PYTHON` 
 
 3. PATH error:Error in main driver function Path does not exist: Issue due to relative path for source and target data file, 
 based on which directory I trigger the job from. the path will get changed. resulting in error message. 
-   - Plan is to use `project_root_directory` for paths. 
+   - Plan is to use `project_root_directory` for paths.
+
+
+4. Github Actions ci test failure
+   - Error in github actions. 
+```======================================================================
+ERROR: test_flatten_json (test_air_asia_data_job.TestAirA)
+In real project there should be test data setup, here we are using real data for test purpose
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/runner/work/pyspark_boilerplate/pyspark_boilerplate/test/test_air_asia_data_job.py", line 59, in test_flatten_json
+    json_list = job.flatten_json(test_path)
+  File "/home/runner/work/pyspark_boilerplate/pyspark_boilerplate/etl/data_jobs/air_asia_data_job.py", line 84, in flatten_json
+    with open(path + "/superman.json", encoding="utf-8") as f:
+FileNotFoundError: [Errno 2] No such file or directory: '/home/runner/work/pyspark_boilerplate/pyspark_boilerplate/resources/data/source_data/aa_data/superman.json'
+
+======================================================================
+FAIL: test_read_nested_json (test_air_asia_data_job.TestAirA)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/runner/work/pyspark_boilerplate/pyspark_boilerplate/test/test_air_asia_data_job.py", line 33, in test_read_nested_json
+    self.assertTrue(os.path.exists(landing_path + "/superman.json"))
+AssertionError: False is not true
+
+======================================================================
+FAIL: test_config_utils (test_config_utils.TestConfigUtils)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/runner/work/pyspark_boilerplate/pyspark_boilerplate/test/test_config_utils.py", line 28, in test_config_utils
+    assert superman_landing_path == "resources/data/source_data/aa_data"
+AssertionError
+```
