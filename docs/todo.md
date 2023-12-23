@@ -7,6 +7,7 @@
 This section is work in progress, and functional with basic features.
    Optimize image size, takes time to load
    Add more innovative use cases
+   More on CICD. 
 
 # 2. Spark Environment in Docker
 This section is also work in progress and functional with basic features. 
