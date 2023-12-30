@@ -14,8 +14,6 @@ from utils.logging_utils import Logger
 
 
 sys.path.append(os.path.abspath(os.path.dirname(__file__)))
-# os.environ["PYSPARK_PYTHON"] = sys.executable
-# os.environ["PYSPARK_DRIVER_PYTHON"] = sys.executable
 
 
 class App:
