@@ -54,7 +54,7 @@ make run-code
 The above make command runs spark-submit command so the console log will contain spark logs as well.
 
 
-# Packaging and distribution
+# Packaging/build and distribution
 ```commandline
 make package
 ```
